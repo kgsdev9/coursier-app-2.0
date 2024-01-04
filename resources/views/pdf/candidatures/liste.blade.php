@@ -1,79 +1,56 @@
-!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des candidatures</title>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    <style>
-        table {
-            width: 95%;
-            border-collapse: collapse;
-            margin: 50px auto;
-        }
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
-        /* Zebra striping */
-        tr:nth-of-type(odd) {
-            background: #eee;
-        }
-
-        th {
-            background: #3498db;
-            color: white;
-            font-weight: bold;
-        }
-
-        td,
-        th {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: left;
-            font-size: 18px;
-        }
-
-
-    </style>
-
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
-
 <body>
+<img src="{{public_path('logo.png')}}" alt="" style="height:60px">
 
-    <div style="width: 95%; margin: 0 auto;">
-        <div style="width: 10%; float:left; margin-right: 20px;">
-            <img src="{{ public_path('assets/images/logo.png') }}" width="100%"  alt="">
-        </div>
-        <div style="width: 50%; float: left;">
-            <h1>Liste des tous les utilisateurs</h1>
-        </div>
-    </div>
+<h2> Liste des candidatures engagés  {{Auth::user()->name}}   </h2>
 
-    <table style="position: relative; top: 50px;">
-        <thead>
-            <tr>
-                <th>NOm</th>
-                <th>Prénom</th>
-                <th>Email</th>
-                <th>Matricule</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($allUsersCandidare as $user)
-                <tr>
-                    <td data-column="First Name">{{ $user->first_name }}</td>
-                    <td data-column="Last Name">{{ $user->last_name }}</td>
-                    <td data-column="Email" style="color: dodgerblue;">
-                        {{ $user->email }}
-                    </td>
-                    <td data-column="Date">
-                        {{ date('F j, Y', strtotime($user->create_at)) }}
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
+<table>
+  <tr>
+    <th>Photo  </th>
+    <th>Nom Prénom</th>
+    <th>Matricule</th>
+    <th>Télephone</th>
+    <th>Id Permanent</th>
+  </tr>
+  @foreach ($allUsersCandidare as $etudiant)
+  <tr>
+    <tr>
+    <td><img src="{{ public_path('storage/photos/'.$etudiant->photo) }}" alt="" style="height:50px;"></td>
+    <td>{{$etudiant->nom}} {{$etudiant->prenom}} </td>
+    <td>{{$etudiant->matricule}}</td>
+    <td>{{$etudiant->telephone}}</td>
+    <td>{{$etudiant->identifiant_permanent}}</td>
+  </tr>
+  @endforeach
+</table>
 </body>
-
 </html>
+
+
+
+
+
+
+
+
+

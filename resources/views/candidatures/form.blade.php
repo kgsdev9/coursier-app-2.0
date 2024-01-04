@@ -1,10 +1,24 @@
 <div class="row mt-0 mt-md-4">
     <div class="col-lg-12 col-md-8 col-12">
-        <!-- Card -->
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+                <!-- Card -->
         <div class="card">
             <!-- Card header -->
             <div class="card-header">
+                @if($candidatureId)
+                <h3 class="mb-0">Modifier candidature</h3>
+                @else
                 <h3 class="mb-0">Nouvelle candidature</h3>
+                @endif
                 <p class="mb-0">
                     Entrer les  informations sur la candidatures.
                 </p>
@@ -14,9 +28,12 @@
                 <div class="d-lg-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center mb-4 mb-lg-0">
                         @if ($photo)
-
                         <img src="{{ $photo->temporaryUrl() }}" id="img-uploaded" class="avatar-xl rounded-circle">
-                     @endif
+                        @else
+                        <img src="{{asset('storage/photos/'.$oldImage) }}" alt=""  class="avatar-xl rounded-circle">
+                     
+                        @endif
+
 
                         <div class="ms-3">
                             <h4 class="mb-0">Photo</h4>
@@ -149,7 +166,12 @@
 
                         </div>
                         <div class="col-12">
+                            @if($candidatureId)
+                            <button class="btn btn-primary" wire:click="update()">Modifier la candidature</button>
+                            @else
                             <button class="btn btn-primary" wire:click="createCandidature">Enregistrer la candidature</button>
+                            @endif
+
                         </div>
                     </div>
                 </div>

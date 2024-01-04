@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
-<livewire:candidature />
+@livewire('admin.all-candidature')
 @endsection

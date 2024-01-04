@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Candidature;
+
 
 class CandidatureController extends Controller
 {
@@ -10,8 +11,14 @@ class CandidatureController extends Controller
         return view('candidatures.create');
      }
 
-     
+
      public function index() {
         return view('candidatures.liste');
+     }
+
+     public function show(string $id) {
+        return view('candidatures.detail', [
+            'detailCandidature'=> Candidature::find($id)
+        ]);
      }
 }

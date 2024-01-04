@@ -25,6 +25,17 @@ class Candidature extends Model
         'point_bac',
         'ecole_origine',
         'sexe',
-        'user_id'
+        'user_id',
+        'numero_table'
     ];
+
+    public function getImageUrl(string $photo) {
+        return asset('storage/photos/'.$photo);
+    }
+
+
+
+    public function owner() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

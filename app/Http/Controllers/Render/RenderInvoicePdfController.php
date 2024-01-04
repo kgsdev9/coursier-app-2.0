@@ -15,7 +15,7 @@ class RenderInvoicePdfController extends Controller
 
         $pdf = Pdf::loadView('pdf.candidatures.liste', [
             'allUsersCandidare'=> $allUsersCandidare
-        ]);
+        ])->setPaper('a4', 'landscape');
         return $pdf->download('invoice.pdf');
      }
 }

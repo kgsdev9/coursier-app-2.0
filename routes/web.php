@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CandidatureController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Render\RenderInvoicePdfController;
 use App\Http\Controllers\Render\RenderInvoiceExcellController;
 
@@ -32,3 +33,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('users/export/', [RenderInvoiceExcellController::class, 'printCandidatureUserExcell'])->name('candidature.users.export');
 
 Route::get('/usrs/print/all/pdf', [RenderInvoicePdfController::class, 'printCandidatureUserPDF'])->name('candidature.users.pdf');
+
+
+Route::get('/candidatures/all', [HomeController::class, 'allCandidaures'])->name('all.candidatures');
