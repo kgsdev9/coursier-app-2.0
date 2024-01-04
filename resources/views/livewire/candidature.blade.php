@@ -7,7 +7,7 @@
                      <h3 class="mb-0">Mes candidatures</h3>
                      <span>liste des mes candidatures engagées .</span>
                  </div>
-                 <button class="btn btn-dark" wire:click="displayFormCandidature()"> Nouvelle candidature</button>
+                 <button class="btn btn-dark" wire:click="displayFormCandidature()"> <i class="fa fa-plus"></i>  Nouvelle candidature</button>
              </div>
          </div>
          @if($mode ==false)
@@ -19,8 +19,8 @@
                              <input type="search"  wire:model.live="search"  class="form-control" placeholder="Rechercher">
                      </div>
                      <div class="col-auto">
-                         <a href="{{route('candidature.users.export')}}" class="btn btn-secondary">Export CSV</a>
-                         <a href="{{route('candidature.users.pdf')}}" class="btn btn-outline-warning">Export PDF</a>
+                         <a href="{{route('candidature.users.export')}}" class="btn btn-secondary"> <i class="fa fa-file-excel-o"></i> Export CSV</a>
+                         <a href="{{route('candidature.users.pdf')}}" class="btn btn-outline-warning"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
                      </div>
                  </div>
              </div>
@@ -60,7 +60,8 @@
                                  <button wire:click="valider({{$candidature->id}})" class="btn btn-outline-success btn-sm">Valider</button>
                                  @endcan
                                      <button class="btn btn-outline-dark btn-sm" wire:click="edit({{$candidature->id}})"> <i class="fa fa-edit"></i></button>
-                                     <button class="btn btn-outline-danger btn-sm"> <i class="fa fa-trash"></i></button>
+
+                                     <button class="btn btn-outline-danger btn-sm" wire:click="delete" wire:confirm.prompt="Vous êtes sûr? \n\nType tapez oui pour confirmer|oui"> <i class="fa fa-trash"></i></button>
                                  <a href="{{route('candidature.show', $candidature->id)}}" class="btn btn-outline-dark btn-sm" wire:navigate><i class="fa fa-eye"></i></a>
                              </td>
                          </tr>

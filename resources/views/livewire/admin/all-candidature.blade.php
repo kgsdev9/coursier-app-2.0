@@ -40,7 +40,7 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{Storage::url($candidature->photo)}}" alt="" class="rounded-circle avatar-md me-2">
+                                    <img src="{{ asset('storage/photos/'.$candidature->photo) }}" alt="" class="rounded-circle avatar-md me-2">
                                     <h5 class="mb-0">{{$candidature->nom}} {{$candidature->prenom}}</h5>
                                 </div>
                             </td>

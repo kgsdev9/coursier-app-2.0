@@ -31,14 +31,11 @@
                         <img src="{{ $photo->temporaryUrl() }}" id="img-uploaded" class="avatar-xl rounded-circle">
                         @else
                         <img src="{{asset('storage/photos/'.$oldImage) }}" alt=""  class="avatar-xl rounded-circle">
-                     
                         @endif
-
-
                         <div class="ms-3">
                             <h4 class="mb-0">Photo</h4>
                             <p class="mb-0">
-                                PNG or JPG no bigger than 800px wide and tall.
+                                PNG ou JPG ne dépassant pas 20 px de large et de haut.
                             </p>
                         </div>
                     </div>
@@ -49,14 +46,7 @@
                 </div>
                 <hr class="my-5">
                 <div>
-                    <h4 class="mb-0">Personal Details</h4>
-                    <p class="mb-4">
-                        Edit your personal information and address.
-                    </p>
-                    <!-- Form -->
                   <div class="row gx-3 needs-validation">
-
-
                         <!-- First name -->
                         <div class="mb-3 col-12 col-md-6">
                             <label class="form-label" for="fname">Nom </label>
@@ -162,7 +152,7 @@
 
                         <div class="mb-3 col-12 col-md-6">
                             <label class="form-label" for="address">Numero de table </label>
-                            <input type="text" id="address" wire:model="numero_table" class="form-control" placeholder="113309989" required="">
+                            <input type="text"  wire:model="numero_table" class="form-control" placeholder="113309989" required="">
 
                         </div>
                         <div class="col-12">

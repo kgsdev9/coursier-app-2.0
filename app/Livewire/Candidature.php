@@ -5,16 +5,22 @@ namespace App\Livewire;
 use App\Models\Compte;
 use Livewire\Component;
 use App\Models\Validation;
+use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Candidature as ModelsCandidature;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 
 class Candidature extends Component
 {
 
     use WithFileUploads;
+    use WithPagination;
+    use LivewireAlert;
+
+    protected $paginationTheme = 'bootstrap';
 
     public  $nom, $prenom, $candidatureId, $email, $photo, $matricule,$ville_composition,
     $identifiant_permanent, $telephone, $serie, $centre_composition,
@@ -26,7 +32,7 @@ class Candidature extends Component
         'nom' => 'required',
         'prenom' => 'required' ,
         'email'=> 'required',
-        'photo'=> 'nullable',
+        'photo'=>  'nullable',
         'matricule'=> 'required',
         'identifiant_permanent'=> 'required',
         'telephone'=> 'required',
@@ -55,6 +61,7 @@ class Candidature extends Component
         }
 
         public function createCandidature() {
+            $this->validate();
 
             $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
             $this->photo->storeAs('photos', $name);
@@ -73,31 +80,21 @@ class Candidature extends Component
                 'mention' => $this->mention,
                 'point_bac' => $this->point_bac,
                 'ecole_origine' => $this->ecole_origine,
+                'numero_table' => $this->numero_table,
                 'sexe' => $this->sexe,
                 'photo' => $name,
             ]);
-
             $this->mode= false ;
-
             Compte::create([
                 'solde'=> 1000,
                 'user_id'=> Auth::user()->id
             ]);
-
+            $this->alert('success', 'Candidature ajoutée avec success');
             $this->reset();
         }
 
-        public function valider($id) {
-           $candidature =  ModelsCandidature::find($id);
-
-            Validation::create([
-                'code_candidature'=> rand(100, 200),
-                'etat'=> 'valide',
-                'justificatif'=> 'candidature validée',
-                'qrcode'=> 'generate',
-                'candidature_id'=> $candidature->id
-            ]);
-            return redirect()->back();
+        public function delete() {
+            dd('post supprimé');
         }
 
 
@@ -119,6 +116,7 @@ class Candidature extends Component
                     $this->ville_composition = $candidature->ville_composition;
                     $this->numero_bts = $candidature->numero_bts;
                     $this->mention = $candidature->mention;
+                    $this->numero_table = $candidature->numero_table;
                     $this->point_bac = $candidature->point_bac;
                     $this->ecole_origine = $candidature->ecole_origine;
                     $this->sexe = $candidature->sexe;
@@ -139,7 +137,6 @@ class Candidature extends Component
             $photo = $candidature->photo;
             if($this->photo)
             {
-             
                 Storage::delete($candidature->photo);
                 $photo = md5($this->photo . microtime()).'.'.$this->photo->extension();
                 $this->photo->storeAs('photos', $photo);
@@ -147,7 +144,6 @@ class Candidature extends Component
                 $photo = $candidature->photo;
 
             }
-
             $candidature->update([
                      'nom' => $this->nom,
                     'prenom' => $this->prenom,
@@ -162,11 +158,12 @@ class Candidature extends Component
                     'mention' => $this->mention,
                     'point_bac' => $this->point_bac,
                     'ecole_origine' => $this->ecole_origine,
+                    'numero_table' => $this->numero_table,
                     'sexe' => $this->sexe,
                     'photo' => $photo,
             ]);
+            $this->alert('success', 'Candidature modifiée avec success');
             $this->reset();
-            session()->flash('success','Candidature mise à jour avec succcess!!');
             $this->mode = false;
 
         }
@@ -174,7 +171,7 @@ class Candidature extends Component
     public function render()
     {
         return view('livewire.candidature', [
-            'allCandidatures' => ModelsCandidature::where('nom', 'like', '%'.$this->search.'%')->where('user_id', Auth::user()->id)->paginate(20),
+            'allCandidatures' => ModelsCandidature::searchCandidature($this->search)->filterUserCandidature()->paginate(10)
         ]);
     }
 }

@@ -44,7 +44,7 @@
                             <a class="nav-link" href="{{route('all.candidatures')}}"  wire:navigate>Toutes les candidatures</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accounts</a>
+                            <a class="nav-link dropdown-toggle" href="">Versements</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -67,7 +67,9 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-        <script src="{{asset('assets/libs/simplebar/dist/simplebar.min.js')}}"></script>
+     <script src="{{asset('assets/libs/simplebar/dist/simplebar.min.js')}}"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <x-livewire-alert::scripts />
         @livewireScripts
 </body>
 </html>
