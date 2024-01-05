@@ -18,6 +18,11 @@
                     <div class="col-auto">
                         <a href="" class="btn btn-secondary">Export CSV</a>
                         <a href="#" class="btn btn-outline-warning">Export PDF</a>
+                         <form action="{{route('import.candidature')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                             <input type="file" class="form-control" name="file">
+                           <button class="btn btn-outline-warning">Importer</button>
+                         </form>
                     </div>
                 </div>
             </div>

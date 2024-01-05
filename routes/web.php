@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CandidatureController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\Render\RenderInvoicePdfController;
 use App\Http\Controllers\Render\RenderInvoiceExcellController;
+use App\Http\Controllers\VersementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,9 @@ Route::get('/usrs/print/all/pdf', [RenderInvoicePdfController::class, 'printCand
 
 
 Route::get('/candidatures/all', [HomeController::class, 'allCandidaures'])->name('all.candidatures');
+
+
+Route::get('/versement', VersementController::class)->name('versement.all');
+
+Route::post('/import-candidature', [ImportController::class, 'import'])->name('import.candidature');
+

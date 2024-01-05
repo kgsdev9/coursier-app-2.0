@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('versements', function (Blueprint $table) {
             $table->id();
+            $table->string('montant');
+            $table->string('code_transaction')->unique();
+            $table->string('qrcode')->nullable();
+            $table->unsignedBigInteger('candidature_id')->nullable();
+            $table->foreign('candidature_id')->references('id')->on('candidatures')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();
         });
     }
