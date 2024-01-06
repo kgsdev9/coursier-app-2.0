@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Candidature;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -19,8 +20,8 @@ class CandidatureImport implements ToModel,WithHeadingRow
         return Candidature::create([
             'nom' => $row[1],
             'prenom' => $row[1],
-            'email' => $row[1],
-            'matricule' => rand(100,200),
+            'email' => rand(10, 1299898988),
+            'matricule' => rand(100,2002233),
             'identifiant_permanent' => $row[1],
             'telephone' => $row[1],
             'serie' =>$row[1],
@@ -32,7 +33,8 @@ class CandidatureImport implements ToModel,WithHeadingRow
             'ecole_origine' => $row[1],
             'numero_table' => $row[1],
             'photo' => $row[1],
-            'sexe' => $row[1]
+            'sexe' => $row[1],
+            'user_id'=> Auth::user()->id
         ]);
 
         dump('created');

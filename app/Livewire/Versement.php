@@ -22,6 +22,11 @@ class Versement extends Component
     'montant' => 'required'
    ];
 
+   public function __construct()
+   {
+    $this->codeTransaction = rand(1000, 23000);
+   }
+
     public function  form() {
         $this->mode = false;
     }
@@ -32,25 +37,28 @@ class Versement extends Component
 
     }
 
+    public function closeModal() {
+        $this->reset();
+        $this->dispatch('closeModal');
+    }
+
 
     public function store() {
         $this->validate();
         ModelsVersement::create([
             'montant'=> $this->montant,
             'candidature_id'=> $this->showCandidature->id,
-            'code_transaction'=> rand(100, 23300),
+            'code_transaction'=>  $this->codeTransaction,
         ]);
         $this->alert('success', 'Versement ajoutée avec success');
         $this->reset();
         $this->dispatch('closeModal');
     }
 
-
-
     public function render()
     {
         return view('livewire.versement', [
-            'allVersement'=> ModelsVersement::orderByDesc('created_at')->paginate(12),
+            'allVersementByUser'=> ModelsVersement::where('candidature_id', $this->showCandidature?->id)->get(),
             'allCandidatures'=> Candidature::searchCandidature($this->search)->orderByDesc('created_at')->paginate(10)
         ]);
 

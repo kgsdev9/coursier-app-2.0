@@ -48,7 +48,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mes utilisateurs</a>
+                            <a class="nav-link dropdown-toggle" href="{{route('users.liste')}}" wire:navigate>Mes utilisateurs</a>
                         </li>
 
                         <li class="nav-item dropdown dropdown-fullwidth">

@@ -16,11 +16,14 @@
                      <input type="search"  wire:model.live="search"  class="form-control" placeholder="Rechercher">
                     </div>
                     <div class="col-auto">
-                        <a href="" class="btn btn-secondary">Export CSV</a>
-                        <a href="#" class="btn btn-outline-warning">Export PDF</a>
+                        <a href="{{route('candidature.admin.export')}}" class="btn btn-secondary">Export CSV</a>
+                        <a href="{{route('candidature.admin.pdf')}}" class="btn btn-outline-warning">Export PDF</a>
                          <form action="{{route('import.candidature')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                              <input type="file" class="form-control" name="file">
+                             @error('file')
+                                <span class="text-danger">{{$message}}</span>
+                             @enderror
                            <button class="btn btn-outline-warning">Importer</button>
                          </form>
                     </div>

@@ -24,6 +24,7 @@
                             <!-- Button -->
                             <div class="col-auto">
                                 <a href="#" class="btn btn-secondary">Export CSV</a>
+                                <a href="{{route('versement.pdf')}}" class="btn btn-secondary">PDF</a>
                             </div>
                         </div>
                     </div>
@@ -47,7 +48,7 @@
                                           </button>
 
                                         <br><br>
-                                        <a href="#" class="btn btn-outline-warning"> <i class="fa fa-list"></i> Liste des versements</a>
+                                        <button href="#" class="btn btn-outline-warning" wire:click="displayCandidature({{$candidature->id}})"> <i class="fa fa-list"></i> Liste des versements</button>
                                     </div>
 
                                 </div>
@@ -84,6 +85,7 @@ window.addEventListener('closeModal', event => {
         window.addEventListener('openModal', event => {
             $('#exampleModal').modal('show');
         });
+
 </script>
 @endpush
 
