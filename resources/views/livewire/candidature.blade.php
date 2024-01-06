@@ -29,6 +29,7 @@
                  <table class="table table-hover table-centered">
                      <thead class="table-light">
                          <tr>
+                            <th></th>
                              <th>Nom Prénom</th>
                              <th>Matricule</th>
                              <th>Télephone</th>
@@ -40,6 +41,9 @@
                      <tbody>
                          @foreach ($allCandidatures as $candidature)
                          <tr>
+                            <td>
+                                <input type="checkbox" class="form-check">
+                            </td>
                              <td>
                                  <div class="d-flex align-items-center">
 

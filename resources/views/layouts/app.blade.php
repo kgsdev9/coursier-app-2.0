@@ -16,7 +16,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid px-0">
                 <div class="d-flex">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/" wire:navigate>
                         <img src="{{asset('logo.png')}}" alt="KGS INFORMATIQUE" style="height:30px;"></a>
 
                 </div>
