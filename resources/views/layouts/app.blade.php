@@ -13,6 +13,7 @@
 </head>
 <body>
     <div id="app">
+        @auth
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid px-0">
                 <div class="d-flex">
@@ -64,7 +65,7 @@
                 </div>
             </div>
         </nav>
-
+        @endauth
         <main class="py-4">
             @yield('content')
         </main>
