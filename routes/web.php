@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\Render\RenderInvoicePdfController;
 use App\Http\Controllers\Render\RenderInvoiceExcellController;
+use App\Http\Controllers\UserCandidatureController;
 use App\Http\Controllers\VersementController;
 use App\Livewire\UserComponent;
 
@@ -51,3 +52,4 @@ Route::post('/import-candidature', [ImportController::class, 'import'])->name('i
 
 Route::get('/users', UserComponent::class)->name('users.liste');
 
+Route::get('/users/candidature/{user}', [UserCandidatureController::class ,'index'])->name('users.candidature');

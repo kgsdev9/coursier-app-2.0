@@ -16,14 +16,12 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid px-0">
                 <div class="d-flex">
-                    <a class="navbar-brand" href="/" wire:navigate>
+                    <a class="navbar-brand" href="/" >
                         <img src="{{asset('logo.png')}}" alt="KGS INFORMATIQUE" style="height:30px;"></a>
 
                 </div>
                 <div class="order-lg-3">
                     <div class="d-flex align-items-center">
-
-
                         <!-- Button -->
                         <button class="navbar-toggler collapsed ms-2 ms-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar top-bar mt-0"></span>
@@ -37,22 +35,28 @@
                 <div class="collapse navbar-collapse" id="navbar-default">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link"  href="{{route('candidature.index')}}"  wire:navigate  id="navbarLanding" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mes Candidatures</a>
+                            <a class="nav-link"  href="{{route('candidature.index')}}"   >Mes Candidatures</a>
 
                         </li>
+
+
+                        @can('administrateur')
+
+
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{route('all.candidatures')}}"  wire:navigate>Toutes les candidatures</a>
+                            <a class="nav-link" href="{{route('all.candidatures')}}"  >Toutes les candidatures</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="{{route('versement.all')}}" wire:navigate>Versements</a>
+                            <a class="nav-link dropdown-toggle" href="{{route('versement.all')}}" >Versements</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="{{route('users.liste')}}" wire:navigate>Mes utilisateurs</a>
+                            <a class="nav-link dropdown-toggle" href="{{route('users.liste')}}" >Mes utilisateurs</a>
                         </li>
 
+                        @endcan
                         <li class="nav-item dropdown dropdown-fullwidth">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Faqs</a>
+                            <a class="nav-link dropdown-toggle" href="#" >Faqs</a>
 
                         </li>
 

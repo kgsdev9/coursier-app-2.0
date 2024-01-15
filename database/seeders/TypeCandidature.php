@@ -6,17 +6,17 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class NationaliteSeeder extends Seeder
+class TypeCandidature extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('nationnalites')->insert([
-            ['nom'=> 'Ivoiriennne',
+        DB::table('type_candidatures')->insert([
+            ['nom'=> 'Libre',
             ],
-            ['nom'=> 'Malienne',
+            ['nom'=> 'Officielle',
         ],
         ]);
     }

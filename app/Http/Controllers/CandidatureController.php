@@ -7,6 +7,12 @@ use App\Models\Candidature;
 
 class CandidatureController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+
      public function create() {
         return view('candidatures.create');
      }

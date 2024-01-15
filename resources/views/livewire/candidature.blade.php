@@ -10,6 +10,8 @@
                  <button class="btn btn-dark" wire:click="displayFormCandidature()"> <i class="fa fa-plus"></i>  Nouvelle candidature</button>
              </div>
          </div>
+         <div class="card">
+
          @if($mode ==false)
          <div class="card">
              <div class="card-header border-bottom-0">
@@ -29,21 +31,20 @@
                  <table class="table table-hover table-centered">
                      <thead class="table-light">
                          <tr>
-                            <th></th>
+
                              <th>Nom Prénom</th>
                              <th>Matricule</th>
                              <th>Télephone</th>
-                             <th>Identifiant permanent</th>
-                             <th>Date</th>
+                             <th>Filiere</th>
+                             <th>Type candidature</th>
+                             <th>Etat</th>
                              <th>Action</th>
                          </tr>
                      </thead>
                      <tbody>
                          @foreach ($allCandidatures as $candidature)
                          <tr>
-                            <td>
-                                <input type="checkbox" class="form-check">
-                            </td>
+
                              <td>
                                  <div class="d-flex align-items-center">
 
@@ -54,19 +55,27 @@
                              </td>
                              <td>{{$candidature->matricule}}</td>
                              <td>{{$candidature->telephone}}</td>
-                             <td>{{$candidature->identifiant_permanent}}</td>
+                             <td>{{$candidature->filiere->nom}}</td>
                              <td>
-                                 {{$candidature->created_at->diffForHumans()}}
+                                 {{$candidature->typecandidature->nom}}
                              </td>
+                             <td>
+                                @if($candidature->etat == "0")
+                                <span class="badge bg-warning-soft">Encours</span>
+                                @else
+                                <span class="badge bg-success-soft">Validée</span>
+                               @endif
+                            </td>
+
                              <td class="pe-0 align-middle border-top-0">
-                                 <a href="https://wa.me/{{$candidature->telephone}}?text=Je vous contacte pour votre candidature" class="btn btn-outline-secondary btn-sm" target="_blank"><i class="fa fa-whatsapp"></i> </a>
+                                 <a href="https://wa.me/+225{{$candidature->telephone}}?text=Je vous contacte pour votre candidature" class="btn btn-outline-secondary btn-sm" target="_blank"><i class="fa fa-whatsapp"></i> </a>
                                  @can('manager_general')
                                  <button wire:click="valider({{$candidature->id}})" class="btn btn-outline-success btn-sm">Valider</button>
                                  @endcan
                                      <button class="btn btn-outline-dark btn-sm" wire:click="edit({{$candidature->id}})"> <i class="fa fa-edit"></i></button>
 
                                      <button class="btn btn-outline-danger btn-sm" wire:click="delete" wire:confirm.prompt="Vous êtes sûr? \n\nType tapez oui pour confirmer|oui"> <i class="fa fa-trash"></i></button>
-                                 <a href="{{route('candidature.show', $candidature->id)}}" class="btn btn-outline-dark btn-sm" wire:navigate><i class="fa fa-eye"></i></a>
+                                 <a href="{{route('candidature.show', $candidature->id)}}" class="btn btn-outline-dark btn-sm" ><i class="fa fa-eye"></i></a>
                              </td>
                          </tr>
                          @endforeach

@@ -15,10 +15,14 @@
                     <div class="col pe-0">
                      <input type="search"  wire:model.live="search"  class="form-control" placeholder="Rechercher">
                     </div>
+                     <div class="col-auto">
+                        <button wire:click="displayForm()" class="btn btn-secondary"> <i class="fa fa-plus"></i>Nouveau</button>
 
+                    </div>
                 </div>
             </div>
             <!-- Table -->
+            @if($mode)
             <div class="table-responsive">
                 <table  id="myTable"  class="table table-hover table-centered">
                     <thead class="table-light">
@@ -40,17 +44,22 @@
                             </td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->created_at}}</td>
-                            <td>{{$user->is_admin}}</td>
+                            <td>{{$user->role->nom}}</td>
                             <td class="pe-0 align-middle border-top-0">
-                                <a href="#" class="btn btn-outline-secondary btn-sm" target="_blank"><i class="fa fa-edit"></i> </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm" target="_blank"><i class="fa fa-trash"></i> </a>
-                                <a href="#" class="btn btn-outline-success btn-sm" wire:navigate>Consulter</a>
+                                <a href="#" class="btn btn-outline-secondary btn-sm" wire:click="edit({{$user}})"><i class="fa fa-edit"></i> </a>
+                                <a href="#" class="btn btn-outline-secondary btn-sm" wire:click="delete({{$user}})"><i class="fa fa-trash"></i> </a>
+                                <a href="#" class="btn btn-outline-success btn-sm">N°candidature  {{count($user->candidatures)}} </a>
+                                <a href="{{route('users.candidature', $user)}}" class="btn btn-outline-secondary btn-sm"> Mes Candidatures</a>
+
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+            @else
+            @include('users.form');
+            @endif
             <div class="pt-2 pb-4">
                 <nav>
                     <ul class="pagination justify-content-center mb-0">

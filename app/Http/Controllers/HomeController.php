@@ -33,7 +33,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'countRevenues'=> Compte::where('user_id', Auth::user()->id)->sum('solde')
+            'countRevenues'=> Compte::where('user_id', Auth::user()->id)->sum('solde'),
+            'countCanddiaturs' =>  Candidature::where('user_id', Auth::user()->id)->count()
         ]);
     }
 }

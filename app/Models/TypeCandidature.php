@@ -5,18 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Validation extends Model
+class TypeCandidature extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'code_candidature',
-        'etat',
-        'qrcode',
-        'candidature_id'
+        'nom'
     ];
-
-
-
-
 }

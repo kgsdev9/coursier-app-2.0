@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Validation extends Model
+class UserActivite extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'code_candidature',
-        'etat',
-        'qrcode',
-        'candidature_id'
+        'start_date',
+        'end_date',
+        'user_id',
     ];
-
-
 
 
 }

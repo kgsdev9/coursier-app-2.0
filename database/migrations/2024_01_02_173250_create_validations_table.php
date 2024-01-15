@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('validations', function (Blueprint $table) {
             $table->id();
-            $table->string('code_candidature');
-            $table->string('etat');
-            $table->string('justificatif');
-            $table->string('qrcode');
+            $table->string('code_candidature')->unique();
+            $table->string('etat')->default('encours');
+            $table->string('qrcode')->nullable();
             $table->unsignedBigInteger('candidature_id')->nullable();
             $table->foreign('candidature_id')->references('id')->on('candidatures')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();

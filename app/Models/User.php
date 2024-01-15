@@ -21,9 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'telephone',
-        'is_admin',
+        'role_id',
         'password',
     ];
+
+    public function candidatures() {
+        return $this->hasMany(Candidature::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -34,6 +38,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function role() {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 
     /**
      * The attributes that should be cast.

@@ -3,10 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Compte;
+use App\Models\Filiere;
 use Livewire\Component;
 use App\Models\Validation;
+use App\Models\Nationnalite;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use App\Models\TypeCandidature;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Candidature as ModelsCandidature;
@@ -23,28 +26,31 @@ class Candidature extends Component
     protected $paginationTheme = 'bootstrap';
 
     public  $nom, $prenom, $candidatureId, $email, $photo, $matricule,$ville_composition,
-    $identifiant_permanent, $telephone, $serie, $centre_composition,
-     $numero_bts, $mention, $point_bac, $ecole_origine, $sexe,
-     $numero_table, $anne_academec_id, $mode, $editMode, $search, $oldImage;
-
+    $identifiant_permanent, $telephone, $serie, $centre_composition, $status,
+     $numero_bts, $point_bac, $ecole_origine, $sexe,$nationalite_id,
+     $numero_table, $anne_academec_id, $mode, $editMode, $search, $oldImage, $typecandidature_id,$filiere_id, $date_naissance, $lieu_naissance;
 
         protected $rules = [
         'nom' => 'required',
         'prenom' => 'required' ,
-        'email'=> 'required',
+        'email'=> 'required ',
         'photo'=>  'nullable',
         'matricule'=> 'required',
-        'identifiant_permanent'=> 'required',
+        'identifiant_permanent'=> 'nullable',
+        'date_naissance'=> 'required',
+        'lieu_naissance'=> 'required',
         'telephone'=> 'required',
         'serie'=> 'required',
         'centre_composition'=> 'required',
         'ville_composition'=> 'required',
-        'numero_bts'=> 'required',
-        'mention'=> 'required',
-        'point_bac'=> 'required',
+        'numero_bts'=> 'nullable',
         'ecole_origine'=> 'required',
         'sexe' => 'required',
-        'numero_table' => 'required',
+        'nationalite_id'=> 'required',
+        'numero_table' => 'nullable',
+        'filiere_id' => 'required',
+        'typecandidature_id' => 'required',
+        'status' => 'nullable',
         ];
 
         protected $queryString = ['search'];
@@ -62,7 +68,6 @@ class Candidature extends Component
 
         public function createCandidature() {
             $this->validate();
-
             $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
             $this->photo->storeAs('photos', $name);
 
@@ -71,18 +76,23 @@ class Candidature extends Component
                 'prenom' => $this->prenom,
                 'email' => $this->email,
                 'matricule' => $this->matricule,
-                'identifiant_permanent' => $this->identifiant_permanent,
+                'typecandidature_id' => $this->typecandidature_id,
+                'date_naissance' => $this->date_naissance,
+                'lieu_naissance' => $this->lieu_naissance,
+                'identifiant_permanent' => $this->identifiant_permanent ?? rand(1000, 200),
                 'telephone' => $this->telephone,
+                'status' => $this->status,
                 'serie' => $this->serie,
                 'centre_composition' => $this->centre_composition,
+                'filiere_id' => $this->filiere_id,
                 'ville_composition' => $this->ville_composition,
-                'numero_bts' => $this->numero_bts,
-                'mention' => $this->mention,
-                'point_bac' => $this->point_bac,
+                'numero_bts' => $this->numero_bts ?? rand(1000, 2300),
                 'ecole_origine' => $this->ecole_origine,
                 'numero_table' => $this->numero_table,
                 'sexe' => $this->sexe,
+                'nationalite_id' => $this->nationalite_id,
                 'photo' => $name,
+                'user_id' => Auth::user()->id,
             ]);
             $this->mode= false ;
             Compte::create([
@@ -106,6 +116,11 @@ class Candidature extends Component
                     session()->flash('error','Aucune candidature trouvée');
                 } else {
                     $this->nom = $candidature->nom;
+                    $this->nationalite_id = $candidature->nationalite_id;
+                    $this->typecandidature_id = $candidature->typecandidature_id;
+                    $this->filiere_id = $candidature->filiere_id;
+                    $this->date_naissance = $candidature->date_naissance;
+                    $this->lieu_naissance = $candidature->lieu_naissance;
                     $this->prenom = $candidature->prenom;
                     $this->email = $candidature->email;
                     $this->matricule = $candidature->matricule;
@@ -115,7 +130,6 @@ class Candidature extends Component
                     $this->centre_composition = $candidature->centre_composition;
                     $this->ville_composition = $candidature->ville_composition;
                     $this->numero_bts = $candidature->numero_bts;
-                    $this->mention = $candidature->mention;
                     $this->numero_table = $candidature->numero_table;
                     $this->point_bac = $candidature->point_bac;
                     $this->ecole_origine = $candidature->ecole_origine;
@@ -145,22 +159,26 @@ class Candidature extends Component
 
             }
             $candidature->update([
-                     'nom' => $this->nom,
-                    'prenom' => $this->prenom,
-                    'email' => $this->email,
-                    'matricule' => $this->matricule,
-                    'identifiant_permanent' => $this->identifiant_permanent,
-                    'telephone' => $this->telephone,
-                    'serie' => $this->serie,
-                    'centre_composition' => $this->centre_composition,
-                    'ville_composition' => $this->ville_composition,
-                    'numero_bts' => $this->numero_bts,
-                    'mention' => $this->mention,
-                    'point_bac' => $this->point_bac,
-                    'ecole_origine' => $this->ecole_origine,
-                    'numero_table' => $this->numero_table,
-                    'sexe' => $this->sexe,
-                    'photo' => $photo,
+                'nom' => $this->nom,
+                'prenom' => $this->prenom,
+                'email' => $this->email,
+                'matricule' => $this->matricule,
+                'typecandidature_id' => $this->typecandidature_id,
+                'date_naissance' => $this->date_naissance,
+                'lieu_naissance' => $this->lieu_naissance,
+                'identifiant_permanent' => $this->identifiant_permanent,
+                'telephone' => $this->telephone,
+                'status' => $this->status,
+                'serie' => $this->serie,
+                'centre_composition' => $this->centre_composition,
+                'filiere_id' => $this->filiere_id,
+                'ville_composition' => $this->ville_composition,
+                'numero_bts' => $this->numero_bts,
+                'ecole_origine' => $this->ecole_origine,
+                'numero_table' => $this->numero_table,
+                'sexe' => $this->sexe,
+                'nationalite_id' => $this->nationalite_id,
+                'photo' => $photo,
             ]);
             $this->alert('success', 'Candidature modifiée avec success');
             $this->reset();
@@ -171,7 +189,10 @@ class Candidature extends Component
     public function render()
     {
         return view('livewire.candidature', [
-            'allCandidatures' => ModelsCandidature::searchCandidature($this->search)->filterUserCandidature()->paginate(10)
+            'allCandidatures' => ModelsCandidature::searchCandidature($this->search)->filterUserCandidature()->paginate(10),
+            'allTypeCandidature'=> TypeCandidature::all(),
+            'allFilieres'=> Filiere::all(),
+            'allNationalites'=> Nationnalite::all()
         ]);
     }
 }

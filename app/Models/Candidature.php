@@ -22,13 +22,32 @@ class Candidature extends Model
         'centre_composition',
         'ville_composition',
         'numero_bts',
-        'mention',
+        'date_naissance',
+        'lieu_naissance',
         'point_bac',
         'ecole_origine',
         'sexe',
         'user_id',
         'numero_table',
+        'status',
+        'typecandidature_id',
+        'filiere_id',
+        'nationalite_id',
+        'etat'
     ];
+
+    public function filiere()  {
+        return $this->belongsTo(Filiere::class, 'filiere_id');
+    }
+
+    public function typecandidature()  {
+        return $this->belongsTo(TypeCandidature::class, 'typecandidature_id');
+    }
+
+    public function nationalite() {
+        return $this->belongsTo(Nationnalite::class, 'nationalite_id');
+    }
+
 
      /**
      * Récuperation de l'utilisateur qui engagé les candidatures.

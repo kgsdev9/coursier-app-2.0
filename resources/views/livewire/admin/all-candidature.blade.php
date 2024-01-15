@@ -9,6 +9,7 @@
 
             </div>
         </div>
+        @if($mode)
         <div class="card">
             <div class="card-header border-bottom-0">
                 <div class="row">
@@ -18,14 +19,7 @@
                     <div class="col-auto">
                         <a href="{{route('candidature.admin.export')}}" class="btn btn-secondary">Export CSV</a>
                         <a href="{{route('candidature.admin.pdf')}}" class="btn btn-outline-warning">Export PDF</a>
-                         <form action="{{route('import.candidature')}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                             <input type="file" class="form-control" name="file">
-                             @error('file')
-                                <span class="text-danger">{{$message}}</span>
-                             @enderror
-                           <button class="btn btn-outline-warning">Importer</button>
-                         </form>
+
                     </div>
                 </div>
             </div>
@@ -37,8 +31,8 @@
                             <th>Nom Prénom</th>
                             <th>Matricule</th>
                             <th>Télephone</th>
-                            <th>Id permanent</th>
                             <th>Proprietaire</th>
+                            <th>Etat</th>
                             <th>Date</th>
                             <th>Action</th>
                         </tr>
@@ -54,9 +48,17 @@
                             </td>
                             <td>{{$candidature->matricule}}</td>
                             <td>{{$candidature->telephone}}</td>
-                            <td>{{$candidature->identifiant_permanent}}</td>
+
                             <td>
                                 {{$candidature->owner?->name}}
+                            </td>
+
+                            <td>
+                                @if($candidature->etat == "0")
+                                <span class="badge bg-warning-soft">Encours</span>
+                                @else
+                                <span class="badge bg-success-soft">Validée</span>
+                               @endif
                             </td>
 
                             <td>
@@ -64,8 +66,15 @@
                             </td>
                             <td class="pe-0 align-middle border-top-0">
                                 <a href="https://wa.me/{{$candidature->telephone}}?text=Je vous contacte pour votre candidature" class="btn btn-outline-secondary btn-sm" target="_blank"><i class="fa fa-whatsapp"></i> </a>
-                               <button wire:click="valider({{$candidature->id}})" class="btn btn-outline-success btn-sm">Valider</button>
-                                <a href="{{route('candidature.show', $candidature->id)}}" class="btn btn-outline-success btn-sm" wire:navigate>Consulter</a>
+                                <button class="btn btn-outline-secondary btn-sm" wire:click="edit({{$candidature->id}})"><i class="fa fa-edit"></i> </button>
+
+                                <a href="https://wa.me/+225{{$candidature->telephone}}?text=Je vous contacte pour votre candidature" class="btn btn-outline-secondary btn-sm" target="_blank"><i class="fa fa-trash"></i> </a>
+                                @if($candidature->etat == "0")
+                                <button wire:click="valider({{$candidature->id}})" class="btn btn-outline-success btn-sm">Valider</button>
+                                @else
+                                <button wire:click="invalide({{$candidature->id}})" class="btn btn-outline-warning btn-sm">Invalidée</button>
+                                 @endif
+                                <a href="{{route('candidature.show', $candidature->id)}}" class="btn btn-outline-success btn-sm">Consulter</a>
                             </td>
                         </tr>
                         @endforeach
@@ -80,5 +89,8 @@
                 </nav>
             </div>
         </div>
+         @else
+         @include('livewire.admin.formadmincandidature')
+         @endif
     </div>
    </div>

@@ -13,22 +13,16 @@
                 <div class="card-body">
                     <div class="d-lg-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center mb-4 mb-lg-0">
-                            <img src="{{Storage::url($detailCandidature->photo)}}" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
-                            <div class="ms-3">
-                                <h4 class="mb-0">Photo</h4>
-
-                            </div>
+                            <img src="{{asset('storage/photos/'.$detailCandidature->photo)}}" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
                         </div>
                     </div>
                     <hr class="my-5">
                     <div>
-
                         <form class="row gx-3 needs-validation" novalidate="">
                             <!-- First name -->
                             <div class="mb-3 col-12 col-md-6">
                                 <label class="form-label" for="fname">Nom</label>
                                 <input type="text" id="fname" class="form-control" placeholder="First Name" required="" value="{{$detailCandidature->nom}}" disabled>
-
                             </div>
                             <!-- Last name -->
                             <div class="mb-3 col-12 col-md-6">
@@ -47,11 +41,14 @@
                                 <input class="form-control flatpickr flatpickr-input" type="text" value="{{$detailCandidature->matricule}}" disabled>
                             </div>
                             <!-- Address -->
+                            @can('administrateur')
                             <div class="mb-3 col-12 col-md-6">
                                 <label class="form-label" for="address">Identifiant permanent</label>
                                 <input type="text" id="address" class="form-control" value="{{$detailCandidature->identifiant_permanent}}" disabled>
 
                             </div>
+                            @endcan
+
 
                             <div class="mb-3 col-12 col-md-6">
                                 <label class="form-label" for="address">Serie Bac </label>
@@ -60,25 +57,70 @@
                             </div>
 
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="editState">State</label>
-                                <select class="form-select" id="editState" required="">
-                                    <option value="">Select State</option>
-                                    <option value="1">Gujarat</option>
-                                    <option value="2">Rajasthan</option>
-                                    <option value="3">Maharashtra</option>
-                                </select>
-                                <div class="invalid-feedback">Please choose state.</div>
+                                <label class="form-label" for="address">Date de naissance  </label>
+                                <input type="date" id="address" class="form-control" value="{{$detailCandidature->date_naissance}}" disabled>
                             </div>
-                            <!-- Country -->
+
                             <div class="mb-3 col-12 col-md-6">
-                                <label class="form-label" for="editCountry">Country</label>
-                                <select class="form-select" id="editCountry" required="">
-                                    <option value="">Select Country</option>
-                                    <option value="1">India</option>
-                                    <option value="2">UK</option>
-                                    <option value="3">USA</option>
-                                </select>
-                                <div class="invalid-feedback">Please choose country.</div>
+                                <label class="form-label" for="address">Lieu  de naissance  </label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->lieu_naissance}}" disabled>
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Type candidature </label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->typecandidature->nom}}" disabled>
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Sexe </label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->sexe}}" disabled>
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Filiere </label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->filiere->nom}}" disabled>
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Centre composition Bac  </label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->centre_composition}}" disabled>
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Ville  composition Bac  </label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->ville_composition}}" disabled>
+                            </div>
+                            @can('administrateur')
+
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Status    </label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->status}}" disabled>
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Numero bts</label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->numero_bts}}" disabled>
+                            </div>
+                            @endcan
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Numero table  </label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->numero_table}}" disabled>
+                            </div>
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Email  </label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->email}}" disabled>
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Ecole d'origine</label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->ecole_origine}}" disabled>
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label" for="address">Nationnalité</label>
+                                <input type="text" id="address" class="form-control" value="{{$detailCandidature->nationalite->nom}}" disabled>
                             </div>
 
                         </form>
