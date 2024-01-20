@@ -39,8 +39,6 @@
                             <a class="nav-link"  href="{{route('candidature.index')}}"   >Mes Candidatures</a>
 
                         </li>
-
-
                         @can('administrateur')
 
 
@@ -57,7 +55,10 @@
 
                         @endcan
                         <li class="nav-item dropdown dropdown-fullwidth">
-                            <a class="nav-link dropdown-toggle" href="#" >Faqs</a>
+                                <a href="#" class="nav-link dropdown-toggle" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="bx bx-log-out"></i>  Deconnexion</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                   @csrf
+                               </form>
 
                         </li>
 

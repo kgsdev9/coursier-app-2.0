@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         <div class="col-xl-3 col-lg-6 col-md-12 col-12">
             <!-- Card -->
             <div class="card mb-4">
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+        {{-- <div class="col-xl-3 col-lg-6 col-md-12 col-12">
             <!-- Card -->
             <div class="card mb-4">
                 <!-- Card body -->
@@ -35,7 +35,7 @@
                     <h2 class="fw-bold mb-1">{{$countRevenues}} FCFA </h2>
                 </div>
             </div>
-        </div>
+        </div> --}}
         @can('administrateur')
 
 

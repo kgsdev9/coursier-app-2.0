@@ -13,7 +13,7 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>Inscription </title>
+    <title>Connexion </title>
 
     <meta name="description" content="" />
 
@@ -68,27 +68,16 @@
             <div class="card-body">
               <p class="mb-4 text-center">En parténariat avec ministere de l'education superieur et la recherche scientifique</p>
 
-              <form id="formAuthentication" class="mb-3" action="#" method="POST">
+              <form  method="POST" action="{{ route('login') }}">
+                @csrf
                 <div class="form-floating form-floating-outline mb-3">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="nom"
-                    name="email-username"
-                    placeholder="Entrer votre nom"
-                    autofocus />
-                  <label for="nom">Nom</label>
-                </div>
-
-                <div class="form-floating form-floating-outline mb-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="nom"
-                      name="email-username"
-                      placeholder="Entrer votre nom"
-                      autofocus />
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     <label for="nom">Email</label>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                     @enderror
                   </div>
 
 
@@ -103,7 +92,7 @@
                           name="password"
                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                           aria-describedby="password" />
-                        <label for="password">Password</label>
+                        <label for="password">Mot de passe </label>
                       </div>
                       <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
                     </div>
@@ -111,15 +100,13 @@
                 </div>
                 <div class="mb-3 d-flex justify-content-between">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="remember-me" />
-                    <label class="form-check-label" for="remember-me"> Remember Me </label>
+                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <label class="form-check-label" for="remember-me">Se souvenir de moi </label>
                   </div>
-                  <a href="auth-forgot-password-basic.html" class="float-end mb-1">
-                    <span>Forgot Password?</span>
-                  </a>
+
                 </div>
                 <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">S'inscrire</button>
+                  <button class="btn btn-primary d-grid w-100" type="submit">Connexion</button>
                 </div>
               </form>
 
