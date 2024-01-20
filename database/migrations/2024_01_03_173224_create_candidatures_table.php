@@ -20,10 +20,13 @@ return new class extends Migration
             $table->string('matricule');
             $table->string('identifiant_permanent')->nullable();
             $table->string('telephone');
+            $table->string('contact')->nullable();
             $table->string('serie');
+            $table->integer('point_bac');
             $table->string('date_naissance');
             $table->string('lieu_naissance');
             $table->string('centre_composition');
+            $table->string('numero_table')->nullable();
             $table->string('ville_composition');
             $table->string('numero_bts')->nullable();
             $table->string('ecole_origine');

@@ -17,7 +17,7 @@ class AllCandidature extends Component
 
     public  $nom, $prenom, $candidatureId, $email, $photo, $matricule,$ville_composition,
     $identifiant_permanent, $telephone, $serie, $centre_composition, $status,
-     $numero_bts, $point_bac, $ecole_origine, $sexe,$nationalite_id,
+     $numero_bts, $point_bac, $ecole_origine, $sexe,$nationalite_id ,$contact,
      $numero_table, $anne_academec_id, $mode = true, $editMode, $search, $oldImage, $typecandidature_id,$filiere_id, $date_naissance, $lieu_naissance;
 
 
@@ -30,6 +30,8 @@ class AllCandidature extends Component
         'prenom' => 'required' ,
         'email'=> 'required',
         'photo'=>  'nullable',
+        'point_bac'=>  'required',
+        'contact'=>  'required',
         'matricule'=> 'required',
         'identifiant_permanent'=> 'nullable',
         'date_naissance'=> 'required',

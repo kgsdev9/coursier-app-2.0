@@ -14,35 +14,88 @@ class FiliereSeeder extends Seeder
     public function run(): void
     {
         DB::table('filieres')->insert([
-            ['nom'=> 'BTS Hygiène et Sécurité au Travail',
+            ['nom'=> 'ATPA/AGRICULTURE TROPICALE OPTION PRODUCTION ANIMALE',
             ],
 
-            ['nom'=> 'BTS Electrotechnique ',
+            ['nom'=> 'ATPV/AGRICULTURE TROPICALE OPTION PRODUCTION VEGETALE',
            ],
 
-           ['nom'=> 'BTS Systèmes Electroniques et Informatiques',
+           ['nom'=> 'AACV/ARTS ET AMENAGEMENT DU CADRE DE VIE',
            ],
 
-           ['nom'=> 'BTS Urbanisme',
+           ['nom'=> 'AD/ASSISTANAT DE DIRECTION',
            ],
 
-           ['nom'=> 'BTS Génie Civil Option Bâtiment',
+           ['nom'=> 'CJPI/CARRIERES JURIDIQUES ET PROFESSIONS IMMOBILIERES',
            ],
 
-           ['nom'=> 'BTS Communication Visuelle',
+           ['nom'=> 'CV/COMMUNICATION VISUELLE',
            ],
 
-           ['nom'=> 'BTS Logistique ',
+           ['nom'=> 'COS/COSMETOLOGIE',
            ],
 
-           ['nom'=> 'BTS Réseau Informatique et Télécommunication',
+           ['nom'=> 'ELT/ELECTROTECHNIQUE',
            ],
 
-           ['nom'=> 'BTS Agriculture Tropicale Option Production Animale',
+           ['nom'=> 'FA/FINANCES ASSURANCES',
            ],
 
-           ['nom'=> 'Informatique et Développement d\'Applications'
-           ],
+
+           ['nom'=> 'FCGE/FINANCES COMPTABILITE ET GESTION DES ENTREPRISES'
+        ],
+
+        ['nom'=> 'GBAT/GENIE CIVIL OPTION BATIMENT'
+         ],
+
+         ['nom'=> 'GGT/GENIE CIVIL OPTION GEOMETRE TOPOGRAPHE'
+        ],
+
+        ['nom'=> 'GTP/GENIE CIVIL OPTION TRAVAUX PUBLICS'
+        ],
+
+        ['nom'=> 'GEE/GENIE ENERGETIQUE ET ENVIRONNEMENT'
+        ],
+
+        ['nom'=> 'GEC/GESTION COMMERCIALE'
+        ],
+
+        ['nom'=> 'GERN/GESTION DE L\'ENVIRONNEMENT ET DES RESSOURCES NATURELLES'
+        ],
+        ['nom'=> 'GCT/GESTION DES COLLECTIVITES TERRITORIALES'
+        ],
+        ['nom'=> 'HST/HYGIENE ET SECURITE DU TRAVAIL'
+        ],
+        ['nom'=> 'IACC/INDUSTRIES AGRO-ALIMENTAIRES ET CHIMIQUES OPTION CONTRÔLE'
+         ],
+         ['nom'=> 'IACP/INDUSTRIES AGRO-ALIMENTAIRES ET CHIMIQUES OPTION PRODUCTION'
+        ],
+        ['nom'=> 'LOG/LOGISTIQUE'
+            ],
+            ['nom'=> 'MSP/MAINTENANCE DES SYSTEMES DE PRODUCTION'
+        ],
+        ['nom'=> 'MGP/MINES GEOLOGIE ET PETROLE'
+        ],
+        ['nom'=> 'IDA/INFORMATIQUE DEVELOPPEUR D\'APPLICATIONS'
+        ],
+        ['nom'=> '2MA/MOTEUR ET MECANIQUE AUTOMOBILE'
+        ],
+        ['nom'=> 'OPL/OPTIQUE LUNETTERIE'
+        ],
+        ['nom'=> 'RIT/RESEAUX INFORMATIQUES ET TELECOMMUNICATIONS'
+        ],
+        ['nom'=> 'RHC/RESSOURCES HUMAINES ET COMMUNICATION'
+        ],
+        ['nom'=> 'SIN/SCIENCES DE L\'INFORMATION'
+        ],
+        ['nom'=> 'SIP/SECURITE INCENDIE ET PREVENTION'
+        ],
+        ['nom'=> 'SEI/SYSTEMES ELECTRONIQUES ET INFORMATIQUES'
+        ],
+        ['nom'=> 'TH/TOURISME HOTELLERIE'
+        ],
+        ['nom'=> 'URBA/URBANISME'
+        ],
         ]);
     }
 }

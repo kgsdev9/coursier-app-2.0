@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Render;
 
 use App\Models\Candidature;
-use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\Versement;
@@ -37,7 +36,7 @@ class RenderInvoicePdfController extends Controller
         ])->setPaper('a4', 'landscape');
         return $pdf->download('listeversement.pdf');
      }
-       
+
 
 
 }

@@ -14,10 +14,11 @@ class NationaliteSeeder extends Seeder
     public function run(): void
     {
         DB::table('nationnalites')->insert([
-            ['nom'=> 'Ivoiriennne',
-            ],
-            ['nom'=> 'Malienne',
-        ],
+            ['nom'=> 'Ivoiriennne'],
+            ['nom'=> 'Mali'],
+            ['nom'=> 'Senegalaise'],
+            ['nom'=> 'Burkinabe'],
+            ['nom'=> 'Autre'],
         ]);
     }
 }

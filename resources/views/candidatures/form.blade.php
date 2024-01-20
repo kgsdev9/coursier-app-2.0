@@ -101,20 +101,37 @@
                         </div>
                         <!-- Address -->
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label" for="address2">Télephone</label>
+                            <label class="form-label" for="address2">Télephone (01)</label>
                             <input type="text" id="address2" wire:model="telephone" class="form-control" placeholder="+225009998978" required="">
 
                         </div>
 
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label" for="address">Serie bac </label>
+                            <label class="form-label" for="address2">Télephone (02)</label>
+                            <input type="text" id="address2" wire:model="contact" class="form-control" placeholder="+225009998978" required="">
+
+                        </div>
+
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label" for="address">Série du BAC (BP,BP)  </label>
                             <select  class="form-control" wire:model="serie">
                                 <option value="">Choisir</option>
                                 <option value="D">D</option>
                                 <option value="A1">A1</option>
                                 <option value="A2">A2</option>
+                                <option value="C">C</option>
+                                <option value="E">E</option>
+                                <option value="F1">F1</option>
+                                <option value="F2">F2</option>
+                                <option value="F3">F3</option>
+                                <option value="F4">F4</option>
+                                <option value="F7">F7</option>
+                                <option value="G2">G1</option>
                                 <option value="G2">G2</option>
-
+                                <option value="G2">H1</option>
+                                <option value="G2">H3</option>
+                                <option value="G2">BT</option>
+                                <option value="G2">BP</option>
                         </select>
 
                         </div>
@@ -126,11 +143,27 @@
                         </div>
 
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label" for="address">Ville  composition </label>
+                            <label class="form-label" for="address">Ville composition </label>
                             <select class="form-control" wire:model="ville_composition">
                                        <option value="">Choisir</option>
-                                    <option value="Abidjan">Abidjan</option>
-                                    <option value="San Pedro">San pedro </option>
+                                      <option value="ABIDJAN">ABIDJAN</option>
+                                      <option value="DAOUKRO">DAOUKRO</option>
+                                      <option value="BONOUA">BONOUA</option>
+                                      <option value="AZAGUIE">AZAGUIE</option>
+                                      <option value="YAMOUSSOUKRO">YAMOUSSOUKRO</option>
+                                      <option value="BONDOUKOU">BONDOUKOU</option>
+                                      <option value="AZAGUIE">AZAGUIE</option>
+                                      <option value="ABENGOUROU">ABENGOUROU</option>
+                                      <option value="ADZOPE">ADZOPE</option>
+                                      <option value="BOUAKE">BOUAKE</option>
+                                      <option value="DALOA">DALOA</option>
+                                      <option value="DIMBOKRO">DIMBOKRO</option>
+                                      <option value="BOUAKE">BOUAKE</option>
+                                      <option value="GAGNOA">GAGNOA</option>
+                                      <option value="KORHOGO">KORHOGO</option>
+                                      <option value="SAN PEDRO">SAN PEDRO</option>
+                                      <option value="ODIENNE">ODIENNE</option>
+                                      <option value="JACQUEVILLE">JACQUEVILLE</option>
                             </select>
 
                         </div>
@@ -172,20 +205,23 @@
                         </div>
 
                         <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label" for="address">Point Bac  </label>
+                             <input type="number" class="form-control" wire:model="point_bac" placeholder="244">
+
+                        </div>
+
+                        <div class="mb-3 col-12 col-md-6">
                             <label class="form-label" for="address">Ecole d'origine </label>
                             <input type="text" id="address" wire:model="ecole_origine" class="form-control" placeholder="Université methodiste" required="">
 
                         </div>
-
-
                         <div class="mb-3 col-12 col-md-6">
                             <label class="form-label" for="editState">Sexe</label>
-                            <select class="form-select"  wire:model="sexe" required="">
+                            <select class="form-select"  wire:model="sexe">
+                                <option value="">Choisir</option>
                                 <option value="M">Masculin</option>
                                 <option value="F">Féminin </option>
-
                             </select>
-
                         </div>
 
                         <div class="mb-3 col-12 col-md-6">

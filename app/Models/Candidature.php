@@ -19,6 +19,8 @@ class Candidature extends Model
         'identifiant_permanent',
         'telephone',
         'serie',
+        'contact',
+        'point_bac',
         'centre_composition',
         'ville_composition',
         'numero_bts',

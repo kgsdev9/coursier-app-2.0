@@ -27,7 +27,7 @@ class Candidature extends Component
 
     public  $nom, $prenom, $candidatureId, $email, $photo, $matricule,$ville_composition,
     $identifiant_permanent, $telephone, $serie, $centre_composition, $status,
-     $numero_bts, $point_bac, $ecole_origine, $sexe,$nationalite_id,
+     $numero_bts, $point_bac, $ecole_origine, $sexe,$nationalite_id, $contact,
      $numero_table, $anne_academec_id, $mode, $editMode, $search, $oldImage, $typecandidature_id,$filiere_id, $date_naissance, $lieu_naissance;
 
         protected $rules = [
@@ -35,6 +35,8 @@ class Candidature extends Component
         'prenom' => 'required' ,
         'email'=> 'required ',
         'photo'=>  'nullable',
+        'point_bac'=>  'required',
+        'contact'=>  'required',
         'matricule'=> 'required',
         'identifiant_permanent'=> 'nullable',
         'date_naissance'=> 'required',
@@ -75,6 +77,8 @@ class Candidature extends Component
                 'nom' => $this->nom,
                 'prenom' => $this->prenom,
                 'email' => $this->email,
+                'point_bac' => $this->point_bac,
+                'contact' => $this->contact,
                 'matricule' => $this->matricule,
                 'typecandidature_id' => $this->typecandidature_id,
                 'date_naissance' => $this->date_naissance,
@@ -119,6 +123,7 @@ class Candidature extends Component
                     $this->nationalite_id = $candidature->nationalite_id;
                     $this->typecandidature_id = $candidature->typecandidature_id;
                     $this->filiere_id = $candidature->filiere_id;
+                    $this->contact = $candidature->contact;
                     $this->date_naissance = $candidature->date_naissance;
                     $this->lieu_naissance = $candidature->lieu_naissance;
                     $this->prenom = $candidature->prenom;
@@ -166,6 +171,8 @@ class Candidature extends Component
                 'typecandidature_id' => $this->typecandidature_id,
                 'date_naissance' => $this->date_naissance,
                 'lieu_naissance' => $this->lieu_naissance,
+                'point_bac' => $this->point_bac,
+                'contact' => $this->contact,
                 'identifiant_permanent' => $this->identifiant_permanent,
                 'telephone' => $this->telephone,
                 'status' => $this->status,
