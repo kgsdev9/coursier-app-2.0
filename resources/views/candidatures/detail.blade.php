@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="d-lg-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center mb-4 mb-lg-0">
-                            <img src="{{asset('storage/photos/'.$detailCandidature->photo)}}" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
+                            <img src="{{asset('candidatures/candidatures/'.$detailCandidature->photo)}}" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
                         </div>
                     </div>
                     <hr class="my-5">
@@ -122,7 +122,7 @@
                                 <label class="form-label" for="address">Nationnalité</label>
                                 <input type="text" id="address" class="form-control" value="{{$detailCandidature->nationalite->nom}}" disabled>
                             </div>
-
+                            <a href="{{route('home')}}" class="btn btn-warning">Retourner</a>
                         </form>
                     </div>
                 </div>

@@ -50,7 +50,7 @@
                             <td>{{$candidature->telephone}}</td>
 
                             <td>
-                                {{$candidature->owner?->name}}
+                                {{$candidature->owner?->fullname}}
                             </td>
 
                             <td>

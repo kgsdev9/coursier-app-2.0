@@ -79,8 +79,6 @@
                     </span>
                      @enderror
                   </div>
-
-
                 <div class="mb-3">
                   <div class="form-password-toggle">
                     <div class="input-group input-group-merge">
@@ -112,8 +110,8 @@
 
               <p class="text-center">
                 <span>Vous avez deja un comte alors ?</span>
-                <a href="{{route('login')}}">
-                  <span>Connectez-vous ! </span>
+                <a href="{{route('register')}}">
+                  <span>Inscrivez-vous ! </span>
                 </a>
               </p>
             </div>

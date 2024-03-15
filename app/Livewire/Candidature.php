@@ -62,22 +62,21 @@ class Candidature extends Component
 
         }
 
-
         public function cancelCandidaure()   {
             $this->mode = false ;
             $this->reset();
         }
 
         public function createCandidature() {
-            $this->validate();
-            $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
-            $this->photo->storeAs('photos', $name);
 
+
+            $image = md5($this->photo . microtime()).'.'.$this->photo->extension();
+            $this->photo->storeAs('candidatures', $image);
             ModelsCandidature::create([
                 'nom' => $this->nom,
                 'prenom' => $this->prenom,
                 'email' => $this->email,
-                'point_bac' => $this->point_bac,
+                'point_bac' => $this->point_bac ?? 230,
                 'contact' => $this->contact,
                 'matricule' => $this->matricule,
                 'typecandidature_id' => $this->typecandidature_id,
@@ -95,7 +94,7 @@ class Candidature extends Component
                 'numero_table' => $this->numero_table,
                 'sexe' => $this->sexe,
                 'nationalite_id' => $this->nationalite_id,
-                'photo' => $name,
+                'photo' => $image,
                 'user_id' => Auth::user()->id,
             ]);
             $this->mode= false ;
@@ -111,6 +110,11 @@ class Candidature extends Component
             dd('post supprimé');
         }
 
+        public function cancel() {
+            $this->mode = false ;
+            $this->reset();
+
+        }
 
         public function edit($id){
 
@@ -119,6 +123,8 @@ class Candidature extends Component
                 if( !$candidature) {
                     session()->flash('error','Aucune candidature trouvée');
                 } else {
+
+
                     $this->nom = $candidature->nom;
                     $this->nationalite_id = $candidature->nationalite_id;
                     $this->typecandidature_id = $candidature->typecandidature_id;
@@ -158,8 +164,9 @@ class Candidature extends Component
             {
                 Storage::delete($candidature->photo);
                 $photo = md5($this->photo . microtime()).'.'.$this->photo->extension();
-                $this->photo->storeAs('photos', $photo);
+                $this->photo->storeAs('candidatures', $photo);
             }else{
+                
                 $photo = $candidature->photo;
 
             }

@@ -29,7 +29,7 @@
                         <tr>
                             <th>Nom </th>
                             <th>Email</th>
-                            <th>Matricule</th>
+                            <th>Télephone</th>
                             <th>Administrateur</th>
                             <th>Action</th>
                         </tr>
@@ -39,11 +39,11 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <h5 class="mb-0">{{$user->name}}</h5>
+                                    <h5 class="mb-0">{{$user->fullname}}</h5>
                                 </div>
                             </td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->created_at}}</td>
+                            <td>{{$user->telephone}}</td>
                             <td>{{$user->role->nom}}</td>
                             <td class="pe-0 align-middle border-top-0">
                                 <a href="#" class="btn btn-outline-secondary btn-sm" wire:click="edit({{$user}})"><i class="fa fa-edit"></i> </a>

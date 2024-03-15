@@ -13,11 +13,22 @@
                     <div class="row gx-3">
                         <!-- input -->
                         <div class="mb-3 col-md-6">
-                            <label class="form-label" for="firstName">Nom</label>
-                            <input type="text" class="form-control" placeholder="nom utilisateur" wire:model="name"  required="">
+                            <label class="form-label" for="firstName">Nom Complet </label>
+                            <input type="text" class="form-control" placeholder="nom utilisateur" wire:model="fullname"  required="">
 
                         </div>
-                        <!-- input -->
+
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label" >Télephone</label>
+                            <input type="email" class="form-control" placeholder="+2250768365866" wire:model="telephone" required="">
+                        </div>
+
+
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label" >Lieu de résidence</label>
+                            <input type="text" class="form-control" placeholder="+Dokui Chaine avion" wire:model="lieu_de_residence" required="">
+                        </div>
+
                         <div class="mb-3 col-md-6">
                             <label class="form-label" >Email</label>
                             <input type="email" class="form-control" placeholder="email" wire:model="email" required="">

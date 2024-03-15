@@ -30,7 +30,7 @@
                         @if ($photo)
                         <img src="{{ $photo->temporaryUrl() }}" id="img-uploaded" class="avatar-xl rounded-circle">
                         @else
-                        <img src="{{asset('storage/photos/'.$oldImage) }}" alt=""  class="avatar-xl rounded-circle">
+                        <img src="{{asset('candidatures/candidatures/'.$oldImage) }}" alt=""  class="avatar-xl rounded-circle">
                         @endif
                         <div class="ms-3">
                             <h4 class="mb-0">Photo</h4>
@@ -259,7 +259,7 @@
                             @else
                             <button class="btn btn-primary" wire:click="createCandidature">Enregistrer la candidature</button>
                             @endif
-
+                            <button class="btn btn-warning" wire:click="cancel()">Retourner</button>
                         </div>
                     </div>
                 </div>

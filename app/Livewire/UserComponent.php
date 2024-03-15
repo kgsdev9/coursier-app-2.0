@@ -13,16 +13,18 @@ class UserComponent extends Component
 {
     use WithPagination;
 
-    public $search, $mode= true, $email, $name, $password, $role_id, $userId;
+    public $search, $telephone, $lieu_de_residence, $mode= true, $email, $fullname, $password, $role_id, $userId;
 
     protected $queryString = ['search'];
 
 
     protected $rules = [
-        'name'=> 'required',
+        'fullname'=> 'required',
         'email'=> 'required',
         'password'=> 'required',
         'role_id'=> 'required',
+        'telephone'=> 'required',
+        'lieu_de_residence'=> 'required',
     ];
     public function displayForm() {
         return $this->mode = false;
@@ -36,8 +38,10 @@ class UserComponent extends Component
 
     public function edit(User $user) {
         $this->mode = false;
-        $this->name = $user->name;
+        $this->fullname = $user->fullname;
         $this->email = $user->email;
+        $this->telephone = $user->telephone;
+        $this->lieu_de_residence = $user->lieu_de_residence;
         $this->userId = $user->id;
         $this->role_id = $user->role_id;
         $this->password = $user->password;
@@ -46,8 +50,10 @@ class UserComponent extends Component
     public function createUser()  {
          $this->validate();
          User::create([
-             'name'=> $this->name,
+             'fullname'=> $this->fullname,
              'email'=> $this->email,
+             'telephone'=> $this->telephone,
+             'lieu_de_residence'=> $this->lieu_de_residence,
              'password'=> Hash::make($this->password),
              'role_id'=> $this->role_id,
          ]);
@@ -61,8 +67,10 @@ class UserComponent extends Component
 
          $marque = User::findOrFail($this->userId);
             $marque->update([
-                'name'=> $this->name,
+                'fullname'=> $this->fullname,
                 'email'=> $this->email,
+                'telephone'=> $this->telephone,
+                'lieu_de_residence'=> $this->lieu_de_residence,
                 'password'=> Hash::make($this->password),
                 'role_id'=> $this->role_id,
             ]);
@@ -75,7 +83,7 @@ class UserComponent extends Component
     public function render()
     {
         return view('livewire.user-component', [
-            'allusers' => User::where('name', 'like', '%'.$this->search.'%')->paginate(12),
+            'allusers' => User::where('fullname', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate(12),
             'allRoles'=>  Role::all()
         ])->extends('layouts.app')->section('content');
     }
