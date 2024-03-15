@@ -34,8 +34,8 @@ tr:nth-child(even) {
   </tr>
   @foreach ($allUsersCandidare as $etudiant)
   <tr>
-    <tr>
-    <td><img src="{{ public_path('storage/photos/'.$etudiant->photo) }}" alt="" style="height:50px;"></td>
+    <tr>    
+    <td><img src="{{ public_path('candidatures/candidatures/'.$etudiant->photo) }}" alt="" style="height:50px;"></td>
     <td>{{$etudiant->nom}} {{$etudiant->prenom}} </td>
     <td>{{$etudiant->matricule}}</td>
     <td>{{$etudiant->telephone}}</td>

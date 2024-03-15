@@ -15,7 +15,7 @@
                             <h4 class="mb-0">Rapport sur les statistique de {{$user->name}}</h4>
                         </div>
                         <!-- card body -->
-                          
+
                         <!-- row -->
                         <div class="row">
                             <!-- col -->
@@ -75,7 +75,7 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar avatar-sm">
-                                                    <img src="{{ asset('storage/photos/'.$candidature->photo) }}" alt="" class="rounded-circle">
+                                                    <img src="{{ asset('candidatures/candidatures/'.$candidature->photo) }}" alt="" class="rounded-circle">
                                                 </div>
                                                 <div class="ms-2">
                                                     <h5 class="mb-0">{{$candidature->nom}} {{$candidature->prenom}}</h5>

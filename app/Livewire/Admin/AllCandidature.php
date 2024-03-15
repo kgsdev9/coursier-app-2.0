@@ -11,6 +11,7 @@ use Livewire\WithPagination;
 use App\Models\TypeCandidature;
 use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class AllCandidature extends Component
 {
@@ -22,6 +23,7 @@ class AllCandidature extends Component
 
 
     use WithPagination;
+    use WithFileUploads;
     use LivewireAlert;
 
 
@@ -29,7 +31,7 @@ class AllCandidature extends Component
         'nom' => 'required',
         'prenom' => 'required' ,
         'email'=> 'required',
-        'photo'=>  'nullable',
+        'photo'=>  'required',
         'point_bac'=>  'required',
         'contact'=>  'required',
         'matricule'=> 'required',
@@ -58,6 +60,8 @@ class AllCandidature extends Component
     public function displayForm() {
         $this->mode = false;
     }
+
+
     public function edit($id){
 
         try {
@@ -69,6 +73,7 @@ class AllCandidature extends Component
                 $this->nationalite_id = $candidature->nationalite_id;
                 $this->typecandidature_id = $candidature->typecandidature_id;
                 $this->filiere_id = $candidature->filiere_id;
+                $this->contact = $candidature->contact;
                 $this->date_naissance = $candidature->date_naissance;
                 $this->lieu_naissance = $candidature->lieu_naissance;
                 $this->prenom = $candidature->prenom;
@@ -103,8 +108,9 @@ class AllCandidature extends Component
         {
             Storage::delete($candidature->photo);
             $photo = md5($this->photo . microtime()).'.'.$this->photo->extension();
-            $this->photo->storeAs('photos', $photo);
+            $this->photo->storeAs('candidatures', $photo);
         }else{
+
             $photo = $candidature->photo;
 
         }
@@ -116,6 +122,8 @@ class AllCandidature extends Component
             'typecandidature_id' => $this->typecandidature_id,
             'date_naissance' => $this->date_naissance,
             'lieu_naissance' => $this->lieu_naissance,
+            'point_bac' => $this->point_bac,
+            'contact' => $this->contact,
             'identifiant_permanent' => $this->identifiant_permanent,
             'telephone' => $this->telephone,
             'status' => $this->status,
@@ -135,6 +143,8 @@ class AllCandidature extends Component
         $this->mode = true;
 
     }
+
+
 
     public function invalide($id) {
         $candidature =  Candidature::find($id);

@@ -3,7 +3,7 @@
       <div class="modal-content">
         <div class="modal-header">
             <div class="card-body">
-               <img src="{{ asset('storage/photos/'.$showCandidature?->photo) }}" alt="" class="rounded-circle avatar-xl mb-3">
+               <img src="{{ asset('candidatures/candidatures/'.$showCandidature?->photo) }}" alt="" class="rounded-circle avatar-xl mb-3">
                 <h1>{{$showCandidature?->nom}} {{$showCandidature?->prenom}} </h1>
             </div>
         </div>

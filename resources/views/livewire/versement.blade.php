@@ -38,7 +38,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
 
-                                        <img src="{{ asset('storage/photos/'.$candidature->photo) }}" class="rounded-circle avatar-xl mb-3" alt="avatar">
+                                        <img src="{{ asset('candidatures/candidatures/'.$candidature->photo) }}" class="rounded-circle avatar-xl mb-3" alt="avatar">
                                         <h4 class="mb-1">{{$candidature->nom}} {{$candidature->prenom}}</h4>
                                         <p class="mb-0">
                                             <i class="fe fe-map-pin me-1"></i>

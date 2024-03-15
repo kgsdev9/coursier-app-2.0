@@ -69,6 +69,7 @@ class Candidature extends Component
 
         public function createCandidature() {
 
+            $this->validate();
 
             $image = md5($this->photo . microtime()).'.'.$this->photo->extension();
             $this->photo->storeAs('candidatures', $image);
@@ -166,7 +167,7 @@ class Candidature extends Component
                 $photo = md5($this->photo . microtime()).'.'.$this->photo->extension();
                 $this->photo->storeAs('candidatures', $photo);
             }else{
-                
+
                 $photo = $candidature->photo;
 
             }

@@ -30,7 +30,7 @@
                         @if ($photo)
                         <img src="{{ $photo->temporaryUrl() }}" id="img-uploaded" class="avatar-xl rounded-circle">
                         @else
-                        <img src="{{asset('storage/photos/'.$oldImage) }}" alt=""  class="avatar-xl rounded-circle">
+                        <img src="{{asset('candidatures/candidatures/'.$oldImage) }}" alt=""  class="avatar-xl rounded-circle">
                         @endif
                         <div class="ms-3">
                             <h4 class="mb-0">Photo</h4>
