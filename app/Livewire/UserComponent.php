@@ -75,7 +75,7 @@ class UserComponent extends Component
                 'role_id'=> $this->role_id,
             ]);
             $this->mode  = true ;
-            $this->reset('name', 'email', 'password', 'role_id');
+            $this->reset('fullname' ,'telephone', 'lieu_de_residence', 'email', 'password', 'role_id');
     }
 
 

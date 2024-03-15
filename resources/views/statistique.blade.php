@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+        <div class="col-xl-3 col-lg-6 col-md-12 col-12">
             <!-- Card -->
             <div class="card mb-4">
                 <!-- Card body -->
@@ -35,7 +35,7 @@
                     <h2 class="fw-bold mb-1">{{$countRevenues}} FCFA </h2>
                 </div>
             </div>
-        </div> --}}
+        </div>
         @can('administrateur')
 
 
@@ -52,7 +52,7 @@
                             <span class="fe fe-users fs-3 text-primary"></span>
                         </div>
                     </div>
-                    <h2 class="fw-bold mb-1">0</h2>
+                    <h2 class="fw-bold mb-1">{{$countUsers}}</h2>
                 </div>
             </div>
         </div>

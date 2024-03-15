@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Candidature;
+use App\Models\User;
 use App\Models\Compte;
+use App\Models\Candidature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,7 @@ class HomeController extends Controller
     {
         return view('home', [
             'countRevenues'=> Compte::where('user_id', Auth::user()->id)->sum('solde'),
+            'countUsers'=> User::count(),
             'countCanddiaturs' =>  Candidature::where('user_id', Auth::user()->id)->count()
         ]);
     }
