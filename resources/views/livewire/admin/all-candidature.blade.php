@@ -67,8 +67,9 @@
                             <td class="pe-0 align-middle border-top-0">
                                 <a href="https://wa.me/{{$candidature->telephone}}?text=Je vous contacte pour votre candidature" class="btn btn-outline-secondary btn-sm" target="_blank"><i class="fa fa-whatsapp"></i> </a>
                                 <button class="btn btn-outline-secondary btn-sm" wire:click="edit({{$candidature->id}})"><i class="fa fa-edit"></i> </button>
-
-                                <a href="https://wa.me/+225{{$candidature->telephone}}?text=Je vous contacte pour votre candidature" class="btn btn-outline-secondary btn-sm" target="_blank"><i class="fa fa-trash"></i> </a>
+                                <br>
+                                <button class="btn btn-outline-danger btn-sm" wire:click="delete({{$candidature->id}})" wire:confirm.prompt="Vous êtes sûr? \n\nType tapez oui pour confirmer|oui"> <i class="fa fa-trash"></i></button>
+                                
                                 @if($candidature->etat == "0")
                                 <button wire:click="valider({{$candidature->id}})" class="btn btn-outline-success btn-sm">Valider</button>
                                 @else

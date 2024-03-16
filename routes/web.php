@@ -41,8 +41,8 @@ Route::get('/admin/print/all/pdf', [RenderInvoicePdfController::class, 'printCan
 
 //exportation des versement en pdf
 Route::get('/export/versement/all', [RenderInvoicePdfController::class, 'printVersement'])->name('versement.pdf');
-
-
+Route::get('/export-versement/single/etudiant/{id?}', [RenderInvoicePdfController::class, 'printallVersementStudent'])->name('versement.etudiant');
+Route::get('/print-versement/single/etudiant/{id?}', [RenderInvoicePdfController::class, 'singleVersementStudent'])->name('versement.print.single');
 Route::get('/candidatures/all', [HomeController::class, 'allCandidaures'])->name('all.candidatures');
 
 

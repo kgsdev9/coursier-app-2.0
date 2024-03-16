@@ -47,20 +47,15 @@
                                         <button type="button" class="btn btn-outline-secondary" wire:click="displayCandidature({{$candidature->id}})" >
                                             <i class="fa fa-plus"></i>Nouveau versement
                                           </button>
-
                                         <br><br>
-                                        <button href="#" class="btn btn-outline-warning" wire:click="displayCandidature({{$candidature->id}})"> <i class="fa fa-list"></i> Liste des versements</button>
+                                        <button type="button" class="btn btn-outline-warning" wire:click="displayCandidature({{$candidature->id}})"> <i class="fa fa-list"></i> Liste des versements</button>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                         @endforeach
-                            @include('modals.versements.form')
-                        <div class="col-lg-12 col-md-12 col-12">
-
-
-                        </div>
+                       
                     </div>
 
                     <nav>

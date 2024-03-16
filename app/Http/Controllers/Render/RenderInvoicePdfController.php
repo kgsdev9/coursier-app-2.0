@@ -19,6 +19,24 @@ class RenderInvoicePdfController extends Controller
         return $pdf->download('candidatureusers.pdf');
      }
 
+     public function printallVersementStudent($id) {
+        $candidature = Candidature::find($id);
+        $versement = Versement::where('candidature_id', $candidature->id)->orderByDesc('created_at')->get();
+        $pdf = Pdf::loadView('pdf.versement.versementetudiant', [
+            'candidature'=> $candidature,
+            'allversementstudent' =>$versement
+        ])->setPaper('a4', 'landscape');
+        return $pdf->download('listedesversements.pdf');
+     }
+
+     public function singleVersementStudent($id) {
+        $versement = Versement::find($id);
+        $pdf = Pdf::loadView('pdf.versement.singleversement', [
+            'singleVersement' =>$versement
+        ])->setPaper('a4', 'landscape');
+        return $pdf->download('recudepaiement.pdf');
+     }
+
 
      public function printCandidatureAdminPDF() {
         $allUsersCandidare = Candidature::all();

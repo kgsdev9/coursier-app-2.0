@@ -107,13 +107,20 @@ class Candidature extends Component
             $this->reset();
         }
 
-        public function delete() {
-            dd('post supprimé');
+        public function delete($id) {
+           $candidature = ModelsCandidature::find($id);
+           Storage::delete($candidature->photo);
+           $candidature->delete();
+           $this->alert('success', 'Candidature supprimée avec  success');
+           $this->reset();
+           $this->mode = false;
+
         }
 
         public function cancel() {
             $this->mode = false ;
             $this->reset();
+
 
         }
 

@@ -31,7 +31,7 @@ class AllCandidature extends Component
         'nom' => 'required',
         'prenom' => 'required' ,
         'email'=> 'required',
-        'photo'=>  'required',
+        'photo'=>  'nullable',
         'point_bac'=>  'required',
         'contact'=>  'required',
         'matricule'=> 'required',
@@ -144,6 +144,15 @@ class AllCandidature extends Component
 
     }
 
+    public function delete($id) {
+        $candidature = Candidature::find($id);
+        Storage::delete($candidature->photo);
+        $candidature->delete();
+        $this->alert('success', 'Candidature supprimée avec  success');
+        $this->reset();
+        $this->mode = true;
+
+     }
 
 
     public function invalide($id) {

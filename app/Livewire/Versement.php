@@ -15,7 +15,7 @@ class Versement extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $candidature_id, $montant, $search, $showCandidature, $codeTransaction, $mode = true;
+    public $candidature_id, $montant, $search, $showCandidature, $codeTransaction, $mode = true , $versement;
 
 
    protected $rules = [
@@ -33,15 +33,32 @@ class Versement extends Component
 
     public function displayCandidature(Candidature $candidature)  {
         $this->showCandidature = $candidature;
+        $this->versement = ModelsVersement::where('candidature_id',  $this->showCandidature->id)->get();
+
         $this->dispatch('openModal', []);
 
     }
+
+
+
 
     public function closeModal() {
         $this->reset();
         $this->dispatch('closeModal');
     }
 
+    public function destroy($id) {
+      $versement  =  ModelsVersement::find($id);
+      $this->alert('success', 'Versement supprimé avec success');
+      $versement->delete();
+    }
+
+    public function resetField() {
+        $this->montant = "";
+        $this->candidature_id = "";
+        $this->codeTransaction = 0;
+
+    }
 
     public function store() {
         $this->validate();
@@ -51,14 +68,14 @@ class Versement extends Component
             'code_transaction'=>  $this->codeTransaction,
         ]);
         $this->alert('success', 'Versement ajoutée avec success');
-        $this->reset();
-        $this->dispatch('closeModal');
+         $this->resetField();
+        // $this->dispatch('closeModal');
     }
 
     public function render()
     {
         return view('livewire.versement', [
-            'allVersementByUser'=> ModelsVersement::where('candidature_id', $this->showCandidature?->id)->get(),
+            'allVersementByUser'=> ModelsVersement::where('candidature_id', $this->showCandidature?->id)->orderByDesc('created_at')->get(),
             'allCandidatures'=> Candidature::searchCandidature($this->search)->orderByDesc('created_at')->paginate(10)
         ]);
 

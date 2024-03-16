@@ -72,7 +72,8 @@
                                  @endcan
                                      <button class="btn btn-outline-dark btn-sm" wire:click="edit({{$candidature->id}})"> <i class="fa fa-edit"></i></button>
 
-                                     <button class="btn btn-outline-danger btn-sm" wire:click="delete" wire:confirm.prompt="Vous êtes sûr? \n\nType tapez oui pour confirmer|oui"> <i class="fa fa-trash"></i></button>
+                                     <button class="btn btn-outline-danger btn-sm" wire:click="delete({{$candidature->id}})" wire:confirm.prompt="Vous êtes sûr? \n\nType tapez oui pour confirmer|oui"> <i class="fa fa-trash"></i></button>
+                                     <br>
                                  <a href="{{route('candidature.show', $candidature->id)}}" class="btn btn-outline-dark btn-sm" ><i class="fa fa-eye"></i></a>
                              </td>
                          </tr>
