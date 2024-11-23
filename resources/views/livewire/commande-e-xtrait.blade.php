@@ -91,8 +91,12 @@
                                     <td>{{ $extrait->created_at ? $extrait->created_at->format('d-m-Y') : '' }}</td>
                                     <td>
                                         <div class="d-flex justify-content-start gap-2">
-                                            <a href="#" class="btn btn-success btn-sm" wire:click="valider({{ $extrait->id }})" >  <i class="fa fa-check"></i></a>
-                                            <a href="#" class="btn btn-outline-dark btn-sm"> <i class="fa fa-clipboard nav-icon"></i> </a>
+                                            <button  class="btn btn-success btn-sm" wire:click="valider({{ $extrait->id }})" >  <i class="fa fa-check"></i></button>
+
+                                            <button  class="btn btn-dark btn-sm" wire:click="printFacture({{ $extrait->id }})">
+                                                <i class="fa fa-clipboard nav-icon"></i>
+                                            </button>
+
                                             <button href="#" class="btn btn-outline-danger btn-sm" wire:click="delete({{ $extrait->id }})">
                                                 <i class="fa fa-trash nav-icon"></i>
                                             </button>
@@ -114,14 +118,7 @@
             </div>
         </div>
     </div>
-    @push('scripts')
-    <script>
-        Livewire.on('handlePrint', (data) => {
-            let url = `/usrs/print/all/pdf?search=${encodeURIComponent(data.search)}&commune_id=${encodeURIComponent(data.commune_id)}&statut=${encodeURIComponent(data.statut)}&created_at=${encodeURIComponent(data.created_at)}`;
-            window.open(url, '_blank');
-        });
-    </script>
-@endpush
+
 
 </div>
 

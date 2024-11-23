@@ -73,6 +73,52 @@ class CommandeEXtrait extends Component
 
 
 
+    public function printFacture($id)
+    {
+    // Récupération de l'extrait par ID
+        $extrait = TExtrait::find($id);
+
+        // Vérifier si l'extrait existe
+        if (!$extrait)
+        {
+            return response()->json(['message' => 'Extrait non trouvé'], 404);
+        }
+
+        // Génération du PDF avec DomPDF
+        $pdf = Pdf::loadView('pdf.extrait.print', [
+            'extrait' => $extrait
+        ])->setPaper('a4', 'portrait'); // ou 'landscape' si vous préférez l'orientation paysage
+
+        // Retourne le PDF en téléchargement
+        return response()->stream(function () use ($pdf) {
+            echo $pdf->output();
+        }, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="extrait.pdf"',
+        ]);
+    }
+
+
+
+    public function valider($id)
+    {
+
+        // Récupérer l'enregistrement par son ID
+        $extrait = TExtrait::find($id);
+
+        if ($extrait) {
+
+            $extrait->status = 2;
+            $extrait->save();
+
+            // Vous pouvez également émettre un événement Livewire pour notifier l'interface utilisateur
+            $this->dispatch('extraitUpdated', 'Le statut a été mis à jour avec succès');
+        } else {
+            // Si l'enregistrement n'est pas trouvé
+            $this->dispatch('extraitError', 'Enregistrement non trouvé');
+        }
+    }
+
 
     public function exportExcel()
     {
