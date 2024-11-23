@@ -81,8 +81,25 @@
      <script src="{{asset('ressources/libs/simplebar/dist/simplebar.min.js')}}"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <x-livewire-alert::scripts />
-
-        @stack('scripts')
         @livewireScripts
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Livewire.on('navigateToConfirmation', function () {
+                    // Utilisation de la redirection SPA de Livewire
+                    Livewire.emit('navigate', event.detail.url);
+                });
+            });
+        </script>
+
+        {{-- <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                window.addEventListener('redirect', event => {
+                    // Redirection en utilisant la navigation SPA de Livewire
+                    Livewire.emit('navigate', event.detail.url);
+                });
+            });
+        </script> --}}
+
 </body>
 </html>

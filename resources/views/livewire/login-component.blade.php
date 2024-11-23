@@ -4,8 +4,6 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h3 class="text-center mb-4">Mon Coursier de Babi</h3>
-
-
                     <!-- Formulaire Livewire avec des étapes -->
                     <form wire:submit.prevent="saveCommande">
 

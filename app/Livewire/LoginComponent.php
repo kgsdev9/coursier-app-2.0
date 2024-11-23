@@ -180,12 +180,9 @@ class LoginComponent extends Component
             'montanttc' => $this->totalPrice + $this->prixserviceinlivraison,
         ]);
 
-        // Action finale, comme redirection ou message de confirmation
         session()->flash('success', 'Demande d\'extrait de naissance enregistrée avec succès.');
+        $this->dispatch('navigateToConfirmation');
 
-        dd('sss');
-        // Réinitialisation du formulaire ou redirection
-        // $this->resetForm();
     }
 
     public function render()

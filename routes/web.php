@@ -5,6 +5,7 @@ use App\Http\Controllers\CandidatureController;
 use App\Http\Controllers\Render\RenderInvoicePdfController;
 use App\Http\Controllers\Render\RenderInvoiceExcellController;
 use App\Livewire\CommandeEXtrait;
+use App\Livewire\ConfirmadCommande;
 use App\Livewire\UserComponent;
 
 /*
@@ -33,3 +34,4 @@ Route::get('/export/versement/all', [RenderInvoicePdfController::class, 'printVe
 
 Route::get('/liste/cmde/extrait', CommandeEXtrait::class)->name('cmde.extrait');
 
+Route::get('/confirmated-commande',ConfirmadCommande::class)->name('commande.confirmated');
