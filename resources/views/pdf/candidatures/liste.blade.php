@@ -30,12 +30,13 @@
         <thead>
             <tr>
                 <th>N° Registre</th>
-                <th>N° Commande</th>
-                <th>Téléphone</th>
+                <th>N° Cmde</th>
+                <th>Télephone</th>
                 <th>Commune</th>
-                <th>Adresse</th>
-                <th>Montant TTC</th>
+                <th>Adressse</th>
+                <th>Montant Qte</th>
                 <th>Date</th>
+                <th>statut</th>
             </tr>
         </thead>
         <tbody>
@@ -43,15 +44,31 @@
             <tr>
                 <td>
                     <div class="d-flex align-items-center">
-                        <h5 class="mb-0">{{$extrait->n_registre}} {{$extrait->nom_complet}}</h5>
+                        <h5 class="mb-0">{{ $extrait->n_registre }} {{ $extrait->nom_complet }}</h5>
                     </div>
                 </td>
-                <td>{{$extrait->codecommande}}</td>
-                <td>{{$extrait->telephone ?? 'rien'}}</td>
-                <td>{{$extrait->commune->libellecommune ?? 'rien'}}</td>
-                <td>{{$extrait->adresse ?? 'rien'}}</td>
-                <td>{{$extrait->montanttc ?? 'rien'}} FCFA - Qte Cmde {{$extrait->qtecmde ?? 'rien'}}</td>
-                <td>{{$extrait->created_at ?? 'rien'}}</td>
+                <td>{{ $extrait->codecommande }}</td>
+                <td>
+                    <a href="https://wa.me/+225{{ $extrait->telephone }}?text=Je vous contacte pour votre candidature" class="text-dark d-flex align-items-center">
+                        <i class="fa fa-whatsapp nav-icon me-2"></i>
+                        {{ $extrait->user->telephone ?? '' }}
+                    </a>
+                </td>
+                <td>{{ $extrait->commune->libellecommune ?? '' }}</td>
+                <td>{{ $extrait->adresse ?? '' }}</td>
+                <td>{{ $extrait->montanttc ?? '' }} FCFA Qte {{ $extrait->qtecmde ?? '' }}</td>
+                <td>{{ $extrait->created_at ? $extrait->created_at->format('d-m-Y') : '' }}</td>
+                <td>
+                    @if($extrait->status == 1)
+                        En cours
+                    @elseif($extrait->status == 2)
+                        Validé
+                    @elseif($extrait->status == 3)
+                        Échec
+                    @else
+                        Non défini
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>
@@ -65,6 +82,5 @@
             </tr>
         </tfoot>
     </table>
-
 </body>
 </html>
