@@ -119,6 +119,28 @@ class CommandeEXtrait extends Component
         }
     }
 
+    public function invalider($id)
+    {
+
+        // Récupérer l'enregistrement par son ID
+        $extrait = TExtrait::find($id);
+
+        if ($extrait) {
+
+            $extrait->status = 1;
+            $extrait->save();
+
+            // Vous pouvez également émettre un événement Livewire pour notifier l'interface utilisateur
+            $this->dispatch('extraitUpdated', 'Le statut a été mis à jour avec succès');
+        } else {
+            // Si l'enregistrement n'est pas trouvé
+            $this->dispatch('extraitError', 'Enregistrement non trouvé');
+        }
+    }
+
+
+
+
 
     public function exportExcel()
     {
@@ -135,9 +157,8 @@ class CommandeEXtrait extends Component
 
     public function delete($id) {
         $candidature = TExtrait::find($id);
-        Storage::delete($candidature->photo);
         $candidature->delete();
-        $this->alert('success', 'Demande supprimée avec succès');
+        // $this->alert('success', 'Demande supprimée avec succès');
         $this->reset();
     }
 

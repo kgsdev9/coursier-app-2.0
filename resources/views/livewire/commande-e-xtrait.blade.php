@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-md-2">
                            <button href="#" class="btn btn-outline-warning" wire:click="handlePrint()">
-                           <i class="fa fa-file-pdf-o"></i> IMPRIMER
+                            <i class="fa fa-clipboard nav-icon"></i> IMPRIMER
                         </button>
 
                         </div>
@@ -63,6 +63,7 @@
                                 <th>Adressse</th>
                                 <th>Montant Qte</th>
                                 <th>Date</th>
+                                <th>statut</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -90,14 +91,38 @@
                                     <td>{{ $extrait->montanttc ?? '' }} FCFA Qte {{ $extrait->qtecmde ?? '' }}</td>
                                     <td>{{ $extrait->created_at ? $extrait->created_at->format('d-m-Y') : '' }}</td>
                                     <td>
+                                        @if($extrait->status == 1)
+                                            En cours
+                                        @elseif($extrait->status == 2)
+                                            Validé
+                                        @elseif($extrait->status == 3)
+                                            Échec
+                                        @else
+                                            Non défini
+                                        @endif
+                                    </td>
+                                    <td>
                                         <div class="d-flex justify-content-start gap-2">
-                                            <button  class="btn btn-success btn-sm" wire:click="valider({{ $extrait->id }})" >  <i class="fa fa-check"></i></button>
+
+                                            @if($extrait->status == 1 || $extrait->status == 3)
+
+                                            <button class="btn btn-success btn-sm" wire:click="valider({{ $extrait->id }})">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                        @elseif($extrait->status == 2)
+
+                                            <button class="btn btn-danger btn-sm" wire:click="invalider({{ $extrait->id }})">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        @else
+                                            <span>Statut inconnu</span>
+                                        @endif
 
                                             <button  class="btn btn-dark btn-sm" wire:click="printFacture({{ $extrait->id }})">
                                                 <i class="fa fa-clipboard nav-icon"></i>
                                             </button>
 
-                                            <button href="#" class="btn btn-outline-danger btn-sm" wire:click="delete({{ $extrait->id }})">
+                                            <button  class="btn btn-outline-danger btn-sm" wire:click="delete({{ $extrait->id }})">
                                                 <i class="fa fa-trash nav-icon"></i>
                                             </button>
 
