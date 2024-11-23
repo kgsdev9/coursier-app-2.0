@@ -113,26 +113,7 @@ class LoginComponent extends Component
         $this->totalPrice = $this->quantite * $basePricePerExtrait;
     }
 
-    // Calcul du prix total en fonction du mode de livraison
-
-    // Réinitialisation du formulaire
-    public function resetForm()
-    {
-        $this->phone = '';
-        $this->requestType = '';
-        $this->deliveryMode = '';
-        $this->servicePrice = 0;
-        $this->quantite = 1;
-        $this->numeroExtrait = '';
-        $this->communeId = '';
-        $this->montantTVA = '';
-        $this->montantTC = '';
-        $this->user_id = '';
-        $this->codeCommande = '';
-        $this->totalPrice = 0;
-        $this->currentStep = 1;
-    }
-
+    
     public function goBack()
     {
         if ($this->currentStep > 1)
@@ -158,8 +139,6 @@ class LoginComponent extends Component
             'document' => 'required',
             'quantite' => 'required',
         ]);
-
-
         $image = md5($this->document . microtime()).'.'.$this->document->extension();
         $this->document->storeAs('extraits', $image);
         $codeextrait  = TExtrait::generateExtraitCode();
@@ -179,16 +158,13 @@ class LoginComponent extends Component
             'adresse' =>  $this->adresse,
             'montanttc' => $this->totalPrice + $this->prixserviceinlivraison,
         ]);
-
         session()->flash('success', 'Demande d\'extrait de naissance enregistrée avec succès.');
-        $this->dispatch('navigateToConfirmation');
-
+        return redirect()->route('commande.confirmated');
     }
 
     public function render()
     {
         $listecommune  = TCommune::all();
-
         return view('livewire.login-component', compact('listecommune'));
     }
 }

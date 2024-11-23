@@ -15,8 +15,16 @@
                                 <label for="phone">Entrez votre numéro</label>
                                 @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
+
                             <div class="d-grid">
-                                <button type="button" class="btn btn-warning btn-block" wire:click="save">Continuer</button>
+                                <button type="button" class="btn btn-warning btn-block" wire:click="save">
+                                    <span wire:loading.remove wire:target="save">Continuer</span>
+                                    <span wire:loading wire:target="save">
+                                        <div class="spinner-border spinner-border-sm text-light" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </span>
+                                </button>
                             </div>
                         @endif
 
@@ -70,15 +78,26 @@
 
                                 <!-- Boutons de navigation pour l'étape 2 -->
                                 <div class="d-grid mt-4">
-                                    <button type="button" wire:click="save" class="btn btn-warning btn-block" {{ !$requestType ? 'disabled' : '' }}>
-                                        Continuer
+                                    <button type="button" class="btn btn-warning btn-block" wire:click="save" {{ !$requestType ? 'disabled' : '' }}>
+                                        <span wire:loading.remove wire:target="save">Continuer</span>
+                                        <span wire:loading wire:target="save">
+                                            <div class="spinner-border spinner-border-sm text-light" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </span>
                                     </button>
                                 </div>
+
                                 <div class="d-grid mt-2">
-                                    <button type="button" wire:click="goBack" class="btn btn-secondary btn-block">
-                                        Retour
+                                    <button type="button" wire:click="goBack" class="btn btn-secondary btn-block" wire:loading.attr="disabled">
+                                        <span wire:loading.remove wire:target="goBack">Retour</span>
+                                        <span wire:loading wire:target="goBack">
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            Retour...
+                                        </span>
                                     </button>
                                 </div>
+
                             </div>
                         @endif
 
@@ -125,7 +144,7 @@
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select id="commune_id" class="form-control" wire:model="commune_id">
-                                            <option value="" disabled selected>Choisissez la commune</option>
+                                            <option value="" selected>Choisissez la commune</option>
                                             @foreach ($listecommune as $commune)
                                                 <option value="{{$commune->id}}">{{$commune->libellecommune}}</option>
                                             @endforeach
@@ -148,17 +167,27 @@
                             </div>
                             @endif
 
-                            <!-- Boutons de navigation pour l'étape 3 -->
                             <div class="d-grid mt-4">
-                                <button type="button" wire:click="save" class="btn btn-warning btn-block">
-                                    Continuer
+                                <button type="button" wire:click="save" class="btn btn-warning btn-block" wire:loading.attr="disabled">
+                                    <span wire:loading.remove wire:target="save">Continuer</span>
+                                    <span wire:loading wire:target="save">
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Dernier etape...
+                                    </span>
                                 </button>
                             </div>
+
                             <div class="d-grid mt-2">
-                                <button type="button" wire:click="goBack" class="btn btn-secondary btn-block">
-                                    Retour
+                                <button type="button" wire:click="goBack" class="btn btn-secondary btn-block" wire:loading.attr="disabled">
+                                    <span wire:loading.remove wire:target="goBack">Retour</span>
+                                    <span wire:loading wire:target="goBack">
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Retour...
+                                    </span>
                                 </button>
                             </div>
+
+
                         @endif
 
                         <!-- Étape 4: Choix du mode de livraison -->
