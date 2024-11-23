@@ -28,7 +28,7 @@
                 <table  id="myTable"  class="table table-hover table-centered">
                     <thead class="table-light">
                         <tr>
-                            <th>Nom Prénom</th>
+                            <th>N° Commande </th>
                             <th>Matricule</th>
                             <th>Télephone</th>
                             <th>Proprietaire</th>
@@ -69,7 +69,7 @@
                                 <button class="btn btn-outline-secondary btn-sm" wire:click="edit({{$candidature->id}})"><i class="fa fa-edit"></i> </button>
                                 <br>
                                 <button class="btn btn-outline-danger btn-sm" wire:click="delete({{$candidature->id}})" wire:confirm.prompt="Vous êtes sûr? \n\nType tapez oui pour confirmer|oui"> <i class="fa fa-trash"></i></button>
-                                
+
                                 @if($candidature->etat == "0")
                                 <button wire:click="valider({{$candidature->id}})" class="btn btn-outline-success btn-sm">Valider</button>
                                 @else

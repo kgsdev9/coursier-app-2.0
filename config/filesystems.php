@@ -32,7 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root'   => public_path() . '/candidatures',
+            'root'   => public_path() . '/documents',
             'throw' => false,
         ],
 

@@ -1,15 +1,6 @@
 @extends('layouts.app')
+
 @section('content')
+@livewire('login-component')
 
-<main>
-
-	<section class="pt-5 pb-5">
-		<div class="container">
-
-            @include('statistique')
-
-            @livewire('candidature')
-		</div>
-	</section>
-</main>
 @endsection

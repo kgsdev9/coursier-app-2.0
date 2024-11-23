@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Compte;
-use App\Models\Candidature;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -15,16 +10,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    public function allCandidaures() {
-            return view('admin.candidatures.listecandidature', [
-                'allCandidatures' => Candidature::paginate(20)
-            ]);
-    }
 
     /**
      * Show the application dashboard.
@@ -34,9 +19,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'countRevenues'=> Compte::where('user_id', Auth::user()->id)->sum('solde'),
-            'countUsers'=> User::count(),
-            'countCanddiaturs' =>  Candidature::where('user_id', Auth::user()->id)->count()
         ]);
     }
+
+                
 }
