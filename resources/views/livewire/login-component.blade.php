@@ -128,7 +128,6 @@
                                     </div>
                                 </div>
 
-
                                 <!-- Quantité -->
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3">
