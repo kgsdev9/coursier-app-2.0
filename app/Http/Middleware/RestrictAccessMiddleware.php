@@ -17,8 +17,7 @@ class RestrictAccessMiddleware
     {
         if (Auth::check())
         {
-            dd(Auth::user()->role->name);
-
+           
             if (Auth::user()->role->nom !== 'admin')
             {
                 return redirect()->route('home')->with('error', 'Accès refusé. Vous n\'avez pas les droits nécessaires.');

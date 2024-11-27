@@ -165,7 +165,7 @@ class LoginComponent extends Component
             'nom_complet' => $this->nom_complet,
             'adresse' => $this->adresse,
             'quantite' => $this->quantite,
-            'deliveryMode' => $this->deliveryMode,
+            'montanttc' => $this->totalPrice + $this->prixserviceinlivraison,
         ]));
 
         session()->flash('success', 'Demande d\'extrait de naissance enregistrée avec succès.');

@@ -28,10 +28,19 @@
                             </div>
                         @endif
 
+
                         <!-- Étape 2: Choix du type de prestation -->
                         @if ($currentStep == 2)
-
+                        <div class="mt-4">
+                            @can('access-admin')
+                            <div class="alert alert-danger text-center">
+                                <a class="btn btn-outline-dark" href="{{route('cmde.extrait')}}">ESPACE D'ADMINISTRATION.</a>
+                            </div>
+                            @else
                             <div class="mt-4">
+                                @can('access-admin')
+
+                                @else
                                 <div class="row justify-content-center">
                                     <div class="col-md-3 mb-3">
                                         <a wire:click="$set('requestType', 'extrait_naissance')"
@@ -97,8 +106,13 @@
                                         </span>
                                     </button>
                                 </div>
-
+                                @endcan
                             </div>
+
+                            @endcan
+                        </div>
+
+
                         @endif
 
                         <!-- Étape 3: Formulaire spécifique au type de prestation -->

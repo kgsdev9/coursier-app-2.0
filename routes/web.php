@@ -38,4 +38,4 @@ Route::get('/confirmated-commande',ConfirmadCommande::class)->name('commande.con
 Route::get('/liste-users',UserComponent::class)->name('users');
 
 
-Route::get('/liste/cmde/extrait', CommandeEXtrait::class)->name('cmde.extrait') ;
+Route::get('/liste/cmde/extrait', CommandeEXtrait::class)->name('cmde.extrait')->middleware('restrict.access')->middleware('auth');

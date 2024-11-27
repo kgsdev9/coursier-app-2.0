@@ -9,6 +9,6 @@
     <p><strong>Nom complet : </strong>{{ $commande['nom_complet'] }}</p>
     <p><strong>Adresse : </strong>{{ $commande['adresse'] }}</p>
     <p><strong>Quantité : </strong>{{ $commande['quantite'] }}</p>
-    <p><strong>Mode de livraison : </strong>{{ $commande['deliveryMode'] }}</p>
+    <p><strong>Montant total : </strong>{{ $commande['montanttc'] }} FCFA </p>
 </body>
 </html>
