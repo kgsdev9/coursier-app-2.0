@@ -3,12 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Livewire\Component;
 use App\Models\TCommune;
 use App\Models\TExtrait;
-use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewCommandeNotification;
 class LoginComponent extends Component
 {
     use WithFileUploads;
@@ -113,7 +114,7 @@ class LoginComponent extends Component
         $this->totalPrice = $this->quantite * $basePricePerExtrait;
     }
 
-    
+
     public function goBack()
     {
         if ($this->currentStep > 1)
@@ -158,6 +159,15 @@ class LoginComponent extends Component
             'adresse' =>  $this->adresse,
             'montanttc' => $this->totalPrice + $this->prixserviceinlivraison,
         ]);
+
+        Mail::to('kgsdev8@gmail.com')->send(new NewCommandeNotification([
+            'n_registre' => $this->n_registre,
+            'nom_complet' => $this->nom_complet,
+            'adresse' => $this->adresse,
+            'quantite' => $this->quantite,
+            'deliveryMode' => $this->deliveryMode,
+        ]));
+
         session()->flash('success', 'Demande d\'extrait de naissance enregistrée avec succès.');
         return redirect()->route('commande.confirmated');
     }

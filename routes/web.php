@@ -32,9 +32,10 @@ Route::get('/admin/export/all', [RenderInvoiceExcellController::class, 'printCan
 Route::get('/admin/print/all/pdf', [RenderInvoicePdfController::class, 'printCandidatureAdminPDF'])->name('candidature.admin.pdf');
 Route::get('/export/versement/all', [RenderInvoicePdfController::class, 'printVersement'])->name('versement.pdf');
 
-Route::get('/liste/cmde/extrait', CommandeEXtrait::class)->name('cmde.extrait')->middleware('restrict.access');;
+// Route::get('/liste/cmde/extrait', CommandeEXtrait::class)->name('cmde.extrait')->middleware('restrict.access')->middleware('auth');
 
 Route::get('/confirmated-commande',ConfirmadCommande::class)->name('commande.confirmated');
 Route::get('/liste-users',UserComponent::class)->name('users');
 
 
+Route::get('/liste/cmde/extrait', CommandeEXtrait::class)->name('cmde.extrait') ;

@@ -191,7 +191,6 @@ class CommandeEXtrait extends Component
 
 
 
-
         // Récupération des données avec les filtres
         $allextraits = $query->orderByDesc('created_at')->paginate(10);
 
