@@ -62,6 +62,7 @@ class LoginComponent extends Component
         if ($this->currentStep == 1) {
             $this->validate([
                 'phone' => 'required',
+
             ]);
 
             // Vérification si le numéro de téléphone existe déjà
@@ -74,6 +75,7 @@ class LoginComponent extends Component
                 // Création et connexion d'un nouvel utilisateur
                 $user = User::create([
                     'telephone' => $this->phone,
+                    'role_id'   => 3
                 ]);
 
                 Auth::login($user);
@@ -87,6 +89,7 @@ class LoginComponent extends Component
         } elseif ($this->currentStep == 2) {
             $this->validate([
                 'requestType' => 'required',
+
             ]);
 
             // Passage à l'étape suivante
@@ -94,6 +97,12 @@ class LoginComponent extends Component
         } elseif ($this->currentStep == 3) {
             $this->validate([
                 'quantite' => 'required|integer|min:2',
+                'n_registre' => 'required|string',
+                'commune_id' => 'required|integer',
+                'nom_complet' => 'required|string',
+                'adresse' => 'required|string',
+                'document' => 'required',
+                'quantite' => 'required',
             ]);
 
             // Mise à jour du prix total en fonction de la quantité
