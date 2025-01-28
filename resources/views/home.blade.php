@@ -352,13 +352,44 @@ function formSteps() {
         },
 
         submitOrder() {
-            // Soumettre la commande
-            this.isLoading = true;
-            setTimeout(() => {
-                this.isLoading = false;
-                alert('Commande confirmée');
-            }, 2000);
+    this.isLoading = true;
+
+    // Données à envoyer
+    const formData = {
+        phone: this.phone,
+        selectedDocument: this.selectedDocument,
+        documentQty: this.documentQty,
+        promoCode: this.promoCode,
+        isInCommune: this.isInCommune,
+        totalAmount: this.calculateTotal(),
+    };
+
+    // Utiliser Fetch pour envoyer les données au backend
+    fetch('/api/submit-order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',  // On spécifie que les données sont en JSON
+            'Accept': 'application/json',
         },
+        body: JSON.stringify(formData)  // On convertit l'objet en chaîne JSON
+    })
+    .then(response => response.json())  // Convertir la réponse en JSON
+    .then(data => {
+        this.isLoading = false;
+        if (data.success) {
+            alert('Commande confirmée !');
+            this.currentStep = 1;  // Réinitialiser l'étape après confirmation
+        } else {
+            alert('Une erreur est survenue, veuillez réessayer.');
+        }
+    })
+    .catch(error => {
+        this.isLoading = false;
+        console.error('Erreur lors de l\'envoi de la commande', error);
+        alert('Une erreur est survenue, veuillez réessayer.');
+    });
+},
+
 
         // Méthode pour appliquer le code promo
         applyPromoCode() {
