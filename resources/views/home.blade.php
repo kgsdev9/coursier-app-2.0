@@ -16,7 +16,7 @@
                                 <p class="text-center text-muted">Commandez vos documents en ligne et payez à la livraison</p>
                                 <div class="form-floating mb-3">
                                     <input type="tel" id="phone" class="form-control"
-                                        placeholder="Entrez votre numéro de téléphone" x-model="phone" @input="validatePhone">
+                                        placeholder="Entrez votre numéro de téléphone" type="tel" x-model="phone" @input="updatePhone" @blur="validatePhone">
                                     <label for="phone">Entrez votre numéro</label>
                                     <span x-show="phoneError" class="text-danger">Le numéro est invalide</span>
                                 </div>
@@ -214,7 +214,7 @@
                                 </div>
 
                                 <!-- Prix total avec réduction -->
-                                <p><strong>Total : </strong> <span x-text="calculateTotal()"></span> Fcfa</p>
+                                <p><strong>Total : </strong> <span x-text="calculateTotal()"></span> Fcfa (Inclus la livraison à domicile)</p>
 
                                 <div class="d-grid">
                                     <button type="button" class="btn btn-secondary" @click="prevStep(3)">Retour</button>
@@ -306,9 +306,18 @@ function formSteps() {
             this.currentStep = step;
         },
 
+        updatePhone() {
+            // Si le numéro ne commence pas déjà par +225, on l'ajoute
+            if (!this.phone.startsWith("+225")) {
+                this.phone = "+225" + this.phone.trim();
+            }
+        },
+
+        // Validation du numéro de téléphone
         validatePhone() {
-            const phoneRegex = /^[0-9]{10}$/;
-            this.phoneError = !phoneRegex.test(this.phone);
+            // Vérifier que le numéro commence bien par +225 et a 12 caractères
+            const phoneRegex = /^\+225[0-9]{10}$/;
+            this.phoneError = !phoneRegex.test(this.phone);  // Si le numéro ne correspond pas au format, afficher l'erreur
         },
 
         selectDocument(doc) {
@@ -324,6 +333,12 @@ function formSteps() {
                 this.currentStep = 1;  // Réinitialiser l'étape après confirmation
             }, 2000);
         },
+
+
+        get isFormValid() {
+                return this.phone && this.selectedDocument && this.fullname && this.commune && this.deliveryPlace && this.image && !this.imageError;
+            },
+
 
         uploadImage(event) {
             const file = event.target.files[0];
