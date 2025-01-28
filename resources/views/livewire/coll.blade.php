@@ -1,5 +1,4 @@
-<div class=
-"container">
+<div class="container">
     <div class="row justify-content-center align-items-center" style="height: 70vh;">
         <div class="col-md-6">
             <div class="card shadow">
@@ -384,9 +383,13 @@
                         </div>
                         @endif
                     </form>
-                    <div class="d-flex justify-content-center align-items-center" style="height:30vh;">
+                    <div class="d-flex justify-content-center align-items-center" style="min-height: 30vh; margin-bottom: 20px;">
                         <div class="text-center">
-
+                            <!-- SVG Confiance -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-shield-lock-fill mb-3" viewBox="0 0 16 16">
+                                <path d="M8 0c-.822 0-1.643.226-2.329.643C5.084 1.57 4.5 2.469 4.5 3.5v5.61l-.442.443C3.664 9.712 3 10.528 3 11.5v3c0 .828.672 1.5 1.5 1.5h4v-1h-.5a.5.5 0 0 1-.5-.5V9h1v4a.5.5 0 0 1-.5.5h-.5v1h4a1.5 1.5 0 0 0 1.5-1.5v-3c0-.972-.664-1.788-1.058-2.446L11.5 9.11V3.5c0-1.031-.584-1.93-1.171-2.357C9.643.226 8.822 0 8 0z"/>
+                            </svg>
+                            <!-- Texte -->
                             <div class="mt-2">
                                 <h4><strong>Khms Group</strong> est une SARL au capital de <strong>1 million de francs CFA</strong>.</h4>
                                 <p>Nous sommes engagés à offrir des services de qualité et à garantir la sécurité et la confidentialité de vos documents.</p>
@@ -394,92 +397,44 @@
                         </div>
                     </div>
 
+
                     <div class="container py-lg-4 pt-4">
                         <!-- Carrousel Bootstrap -->
                         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <!-- Groupe 1 de témoignages -->
                                 <div class="carousel-item active">
-                                    <div class="d-flex flex-column flex-sm-row justify-content-between">
+                                    <div class="row justify-content-center">
                                         <!-- Témoignage 1 -->
-                                        <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2" style="flex: 1 1 100%; max-width: 100%;">
-                                            <div class="p-3">
-                                                <img src="{{asset('assets/img/avatars/1.png')}}" alt="mentor 1" class="avatar avatar-xl rounded-circle">
-                                                <div class="mt-3">
-                                                    <h3 class="mb-0 h4">Vay Kouadio</h3>
-                                                    <span class="text-gray-800">Merci pour la rapidité de votre service, j'ai bien reçu mes documents.</span>
+                                        <div class="col-12 col-md-6 col-lg-4 mb-4">
+                                            <div class="card shadow-sm text-center rounded-4 border" style="min-height: 350px;">
+                                                <div class="p-3">
+                                                    <img src="{{asset('assets/img/avatars/7.png')}}" alt="mentor 7" class="avatar avatar-xl rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
+                                                    <div class="mt-3">
+                                                        <h3 class="mb-0 h4">Adama N'Guessan</h3>
+                                                        <span class="text-gray-800">Une livraison de documents vraiment impeccable, service très professionnel.</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- Témoignage 2 -->
-                                        <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2" style="flex: 1 1 100%; max-width: 100%;">
-                                            <div class="p-3">
-                                                <img src="{{asset('assets/img/avatars/2.png')}}" alt="mentor 2" class="avatar avatar-xl rounded-circle">
-                                                <div class="mt-3">
-                                                    <h3 class="mb-0 h4">Aminata Diabaté</h3>
-                                                    <span class="text-gray-800">Excellente expérience, service rapide et fiable, je recommande vivement !</span>
+                                        <div class="col-12 col-md-6 col-lg-4 mb-4">
+                                            <div class="card shadow-sm text-center rounded-4 border" style="min-height: 350px;">
+                                                <div class="p-3">
+                                                    <img src="{{asset('assets/img/avatars/8.png')}}" alt="mentor 8" class="avatar avatar-xl rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
+                                                    <div class="mt-3">
+                                                        <h3 class="mb-0 h4">Kouadio Yao</h3>
+                                                        <span class="text-gray-800">Service rapide et sécurisé, je recommande ce service à tous mes amis.</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Groupe 2 de témoignages -->
-                                <div class="carousel-item">
-                                    <div class="d-flex flex-column flex-sm-row justify-content-between">
-                                        <!-- Témoignage 3 -->
-                                        <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2" style="flex: 1 1 100%; max-width: 100%;">
-                                            <div class="p-3">
-                                                <img src="{{asset('assets/img/avatars/3.png')}}" alt="mentor 3" class="avatar avatar-xl rounded-circle">
-                                                <div class="mt-3">
-                                                    <h3 class="mb-0 h4">Issouf Koné</h3>
-                                                    <span class="text-gray-800">Je n'ai jamais été aussi satisfait d'un service de livraison de documents !</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <!-- Vous pouvez ajouter d'autres groupes de témoignages ici -->
 
-                                        <!-- Témoignage 4 -->
-                                        <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2" style="flex: 1 1 100%; max-width: 100%;">
-                                            <div class="p-3">
-                                                <img src="{{asset('assets/img/avatars/4.png')}}" alt="mentor 4" class="avatar avatar-xl rounded-circle">
-                                                <div class="mt-3">
-                                                    <h3 class="mb-0 h4">Fanta Traoré</h3>
-                                                    <span class="text-gray-800">Très satisfaite du service, j'ai reçu mon extrait de naissance à temps.</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Groupe 3 de témoignages -->
-                                <div class="carousel-item">
-                                    <div class="d-flex flex-column flex-sm-row justify-content-between">
-                                        <!-- Témoignage 5 -->
-                                        <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2" style="flex: 1 1 100%; max-width: 100%;">
-                                            <div class="p-3">
-                                                <img src="{{asset('assets/img/avatars/5.png')}}" alt="mentor 5" class="avatar avatar-xl rounded-circle">
-                                                <div class="mt-3">
-                                                    <h3 class="mb-0 h4">Saliou Keita</h3>
-                                                    <span class="text-gray-800">Service fiable et rapide, je suis très content de la qualité du service.</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Témoignage 6 -->
-                                        <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2" style="flex: 1 1 100%; max-width: 100%;">
-                                            <div class="p-3">
-                                                <img src="{{asset('assets/img/avatars/6.png')}}" alt="mentor 6" class="avatar avatar-xl rounded-circle">
-                                                <div class="mt-3">
-                                                    <h3 class="mb-0 h4">Fatim Cissé</h3>
-                                                    <span class="text-gray-800">Le service a été rapide et efficace, je vous en remercie !</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Ajoutez d'autres groupes de témoignages si nécessaire -->
                             </div>
 
                             <!-- Contrôles du carrousel -->
@@ -493,8 +448,6 @@
                             </button>
                         </div>
                     </div>
-
-
 
 
                 </div>

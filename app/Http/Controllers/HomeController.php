@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TCommune;
+use App\Models\TypeDocument;
 
 class HomeController extends Controller
 {
@@ -18,9 +20,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        $listetypesdocument  = TypeDocument::all();
+        $communes  = TCommune::all();
+
+
         return view('home', [
+            'typedocument' => $listetypesdocument,
+            'communes' => $communes
         ]);
     }
-
-                
 }
