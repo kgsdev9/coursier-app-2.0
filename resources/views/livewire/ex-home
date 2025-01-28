@@ -176,7 +176,7 @@
 
                                 <!-- Quantité de documents -->
                                 <div class="form-floating mb-3">
-                                    <label for="documentQty"></label>
+
                                     <div class="d-flex align-items-center justify-content-center">
                                         <button type="button" @click="documentQty = Math.max(documentQty - 2, 2)" class="btn btn-outline-danger btn-sm">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
@@ -194,14 +194,6 @@
                                             </svg>
                                         </button>
                                     </div>
-                                </div>
-
-                                <!-- Case à cocher pour savoir si l'utilisateur est dans la commune -->
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="isInCommune" x-model="isInCommune">
-                                    <label class="form-check-label" for="isInCommune">
-                                        Je suis dans la commune où je fais la demande.
-                                    </label>
                                 </div>
 
                                 <!-- Code Promo -->
@@ -232,7 +224,6 @@
 
 
 
-
                     </div>
                 </div>
 
@@ -260,8 +251,7 @@
 </div>
 
 <script>
-
-function formSteps() {
+    function formSteps() {
     return {
         currentStep: 1,
         isLoading: false,
@@ -289,7 +279,6 @@ function formSteps() {
         deliveryPrice: 1000, // Prix de la livraison de base
         deliveryDiscount: 1000, // Réduction sur la livraison si l'utilisateur est dans la commune
 
-        // Case à cocher pour savoir si l'utilisateur est dans la commune
         isInCommune: false, // Déterminer si l'utilisateur est dans la commune
 
         nextStep(step) {
@@ -345,6 +334,10 @@ function formSteps() {
             }, 2000);
         },
 
+        get isFormValid() {
+                return this.phone && this.selectedDocument && this.fullname && this.commune && this.deliveryPlace && this.image && !this.imageError;
+            },
+
         // Méthode pour appliquer le code promo
         applyPromoCode() {
             const validPromoCodes = ['PROMO10', 'DISCOUNT20']; // Exemple de codes promo valides
@@ -386,7 +379,6 @@ function formSteps() {
         }
     }
 }
-
 
 </script>
 
