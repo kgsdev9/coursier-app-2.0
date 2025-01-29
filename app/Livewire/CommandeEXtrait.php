@@ -199,6 +199,6 @@ class CommandeEXtrait extends Component
             'allextraits' => $allextraits,
             'listestatusparametre' => TParametreStaut::where('typestatut', 'documents')->get(),
             'listecommunes' => TCommune::orderBy('libellecommune')->get(),
-        ])->extends('layouts.app')->section('content');
+        ])->extends('layouts.appdashboard')->section('dashboard');
     }
 }

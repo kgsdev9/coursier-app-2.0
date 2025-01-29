@@ -49,7 +49,7 @@
 
             <tr>
                 <th>Nom Complet</th>
-                <td>{{ $extrait->nom_complet }}</td>
+                <td>{{ $extrait->fullname }}</td>
             </tr>
 
             <tr>
@@ -61,10 +61,10 @@
                 <th>Numéro de registre</th>
                 <td>{{ $extrait->n_registre }}</td>
             </tr>
-           
+
             <tr>
                 <th>Telephone</th>
-                <td>{{ $extrait->user->telephone }}</td>
+                <td>{{ $extrait->telephone }}</td>
             </tr>
             <tr>
                 <th>Modèle de Livraison</th>

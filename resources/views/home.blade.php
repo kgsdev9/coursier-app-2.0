@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Documents Rapide Ci en ligne')
 @section('content')
     <div class="container" x-data="formSteps()">
         <div class="row justify-content-center align-items-center" style="height: 70vh;">

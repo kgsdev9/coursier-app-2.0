@@ -49,10 +49,10 @@ class LoginController extends Controller
         if ($request->hasSession()) {
             $request->session()->put('auth.password_confirmed_at', time());
         }
-       UserActivite::create([
-        'start_date'=> now(),
-        'user_id'=> Auth::user()->id
-       ]);
+    //    UserActivite::create([
+    //     'start_date'=> now(),
+    //     'user_id'=> Auth::user()->id
+    //    ]);
 
         return $this->sendLoginResponse($request);
     }

@@ -13,30 +13,33 @@ class UserComponent extends Component
 {
     use WithPagination;
 
-    public $search, $telephone, $lieu_de_residence, $mode= true, $email, $fullname, $password, $role_id, $userId;
+    public $search, $telephone, $lieu_de_residence, $mode = true, $email, $fullname, $password, $role_id, $userId;
 
     protected $queryString = ['search'];
 
 
     protected $rules = [
-        'fullname'=> 'required',
-        'email'=> 'required',
-        'password'=> 'required',
-        'role_id'=> 'required',
-        'telephone'=> 'required',
-        'lieu_de_residence'=> 'required',
+        'fullname' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        'role_id' => 'required',
+        'telephone' => 'required',
+        'lieu_de_residence' => 'required',
     ];
-    public function displayForm() {
+    public function displayForm()
+    {
         return $this->mode = false;
     }
 
-    public function delete(User $user) {
+    public function delete(User $user)
+    {
         $candidarture = Candidature::where('user_id', $user->id)->delete();
         $user->delete();
         return redirect()->route('login');
     }
 
-    public function edit(User $user) {
+    public function edit(User $user)
+    {
         $this->mode = false;
         $this->fullname = $user->fullname;
         $this->email = $user->email;
@@ -47,35 +50,36 @@ class UserComponent extends Component
         $this->password = $user->password;
     }
 
-    public function createUser()  {
-         $this->validate();
-         User::create([
-             'fullname'=> $this->fullname,
-             'email'=> $this->email,
-             'telephone'=> $this->telephone,
-             'lieu_de_residence'=> $this->lieu_de_residence,
-             'password'=> Hash::make($this->password),
-             'role_id'=> $this->role_id,
-         ]);
-         $this->reset();
-         $this->mode= true;
-     }
+    public function createUser()
+    {
+        $this->validate();
+        User::create([
+            'fullname' => $this->fullname,
+            'email' => $this->email,
+            'telephone' => $this->telephone,
+            'lieu_de_residence' => $this->lieu_de_residence,
+            'password' => Hash::make($this->password),
+            'role_id' => $this->role_id,
+        ]);
+        $this->reset();
+        $this->mode = true;
+    }
 
     public function update()
     {
         $this->validate();
 
-         $marque = User::findOrFail($this->userId);
-            $marque->update([
-                'fullname'=> $this->fullname,
-                'email'=> $this->email,
-                'telephone'=> $this->telephone,
-                'lieu_de_residence'=> $this->lieu_de_residence,
-                'password'=> Hash::make($this->password),
-                'role_id'=> $this->role_id,
-            ]);
-            $this->mode  = true ;
-            $this->reset('fullname' ,'telephone', 'lieu_de_residence', 'email', 'password', 'role_id');
+        $marque = User::findOrFail($this->userId);
+        $marque->update([
+            'fullname' => $this->fullname,
+            'email' => $this->email,
+            'telephone' => $this->telephone,
+            'lieu_de_residence' => $this->lieu_de_residence,
+            'password' => Hash::make($this->password),
+            'role_id' => $this->role_id,
+        ]);
+        $this->mode  = true;
+        $this->reset('fullname', 'telephone', 'lieu_de_residence', 'email', 'password', 'role_id');
     }
 
 
@@ -83,8 +87,8 @@ class UserComponent extends Component
     public function render()
     {
         return view('livewire.user-component', [
-            'allusers' => User::where('fullname', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate(12),
-            'allRoles'=>  Role::all()
-        ])->extends('layouts.app')->section('content');
+            'allusers' => User::where('name', 'like', '%' . $this->search . '%')->orderByDesc('created_at')->paginate(12),
+            'allRoles' =>  Role::all()
+        ])->extends('layouts.appdashboard')->section('dashboard');
     }
 }

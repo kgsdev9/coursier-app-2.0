@@ -4,12 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
+    <!-- CSRF Token -->
+    <title>{{ config('app.name', 'Documents Rapide Ci en ligne') }}</title>
     <link rel="stylesheet" href="{{ asset('ressources/libs/bootstrap-icons/font/bootstrap-icons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('ressources/libs/simplebar/dist/simplebar.min.css') }}">
     <link rel="stylesheet" href="{{ asset('ressources/css/theme.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @livewireStyles
+    <link rel="stylesheet" href="{{ asset('bootstrap-icons.min.css') }}">
+
 </head>
 
 <body>
@@ -62,7 +65,7 @@
             </nav>
         @endcan
         <main class="py-4">
-            @yield('content')
+            @yield('dashboard')
         </main>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -73,8 +76,21 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
     <script src="{{ asset('ressources/libs/simplebar/dist/simplebar.min.js') }}"></script>
-    <script src="{{ asset('alpine.js') }}" defer></script>
-    @stack('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+    @livewireScripts
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Livewire !== 'undefined') {
+                Livewire.on('navigateToConfirmation', function() {
+                    Livewire.emit('navigate', event.detail.url);
+                });
+            } else {
+                console.error('Livewire is not defined');
+            }
+        });
+    </script>
+
 </body>
 
 </html>
