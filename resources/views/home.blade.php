@@ -91,7 +91,17 @@
 
                                         <button type="button" class="btn btn-warning" @click="nextStep(2)"
                                             :disabled="!selectedDocument || isLoading">
-                                            <span x-show="!isLoading">Continuer</span>
+                                            <span x-show="!isLoading">Continuer <svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="16" height="16" fill="currentColor"
+                                                    class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z">
+                                                    </path>
+                                                    <path fill-rule="evenodd"
+                                                        d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z">
+                                                    </path>
+                                                </svg>
+                                            </span>
                                             <span x-show="isLoading">
                                                 <div class="spinner-border spinner-border-sm text-light" role="status">
                                                     <span class="visually-hidden">Loading...</span>
@@ -101,7 +111,15 @@
 
 
                                         <button type="button" class="btn btn-secondary mt-2" @click="prevStep(1)">
-                                            Précédent
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M11 7.5a.5.5 0 0 1-.5-.5V3.707L7.854 5.854a.5.5 0 1 1-.708-.708L10.5 2.207a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-3 3a.5.5 0 0 1-.707-.707L10.5 4.707V7a.5.5 0 0 1-.5.5z">
+                                                </path>
+                                                <path fill-rule="evenodd"
+                                                    d="M4 8a.5.5 0 0 0-.5.5V12.5A1.5 1.5 0 0 0 5 14h8a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-.5-.5H4z">
+                                                </path>
+                                            </svg> Précédent
                                         </button>
 
                                     </div>
@@ -173,7 +191,19 @@
 
                                         <button type="button" class="btn btn-warning " @click="nextStep(3)"
                                             :disabled="!isFormValid || isLoading">
-                                            <span x-show="!isLoading">Suivant</span>
+                                            <span x-show="!isLoading">Suivant
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-box-arrow-in-right"
+                                                    viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z">
+                                                    </path>
+                                                    <path fill-rule="evenodd"
+                                                        d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z">
+                                                    </path>
+                                                </svg>
+
+                                            </span>
                                             <span x-show="isLoading">
                                                 <div class="spinner-border spinner-border-sm text-light" role="status">
                                                     <span class="visually-hidden">Loading...</span>
@@ -182,8 +212,16 @@
                                         </button>
 
 
-                                        <button type="button" class="btn btn-secondary mt-4" @click="prevStep(2)">
-                                            Précédent
+                                        <button type="button" class="btn btn-secondary mt-2" @click="prevStep(2)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M11 7.5a.5.5 0 0 1-.5-.5V3.707L7.854 5.854a.5.5 0 1 1-.708-.708L10.5 2.207a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-3 3a.5.5 0 0 1-.707-.707L10.5 4.707V7a.5.5 0 0 1-.5.5z">
+                                                </path>
+                                                <path fill-rule="evenodd"
+                                                    d="M4 8a.5.5 0 0 0-.5.5V12.5A1.5 1.5 0 0 0 5 14h8a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-.5-.5H4z">
+                                                </path>
+                                            </svg> Précédent
                                         </button>
 
 
@@ -257,11 +295,27 @@
                                         livraison à domicile)</p>
 
                                     <div class="d-grid">
-                                        <button type="button" class="btn btn-secondary"
-                                            @click="prevStep(3)">Retour</button>
+                                        <button type="button" class="btn btn-secondary" @click="prevStep(3)">Retour <svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M11 7.5a.5.5 0 0 1-.5-.5V3.707L7.854 5.854a.5.5 0 1 1-.708-.708L10.5 2.207a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-3 3a.5.5 0 0 1-.707-.707L10.5 4.707V7a.5.5 0 0 1-.5.5z">
+                                                </path>
+                                                <path fill-rule="evenodd"
+                                                    d="M4 8a.5.5 0 0 0-.5.5V12.5A1.5 1.5 0 0 0 5 14h8a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-.5-.5H4z">
+                                                </path>
+                                            </svg></button>
                                         <button type="button" class="btn btn-warning mt-3" @click="submitOrder"
                                             :disabled="isLoading">
-                                            <span x-show="!isLoading">Confirmer la commande</span>
+                                            <span x-show="!isLoading">Confirmer la commande <svg width="16"
+                                                    height="16" viewBox="0 0 80 80"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect width="80" height="80" rx="40" fill="#FFEEDA">
+                                                    </rect>
+                                                    <path d="M60 22L35 50L20 35" stroke="#4CAF50" stroke-width="4"
+                                                        fill="none" />
+                                                </svg>
+                                            </span>
                                             <span x-show="isLoading">
                                                 <div class="spinner-border spinner-border-sm text-light" role="status">
                                                     <span class="visually-hidden">Loading...</span>
@@ -293,7 +347,7 @@
                                     <div class="d-grid">
                                         <button type="button" class="btn btn-warning" @click="beginCommande()">Faire
                                             une
-                                            nouvelle demande</button>
+                                            nouvelle demande </button>
 
                                     </div>
                                 </div>
@@ -387,6 +441,8 @@
                     this.deliveryPlace = "";
                     this.selectedDocument = null;
                     this.image = null;
+                    this.documentQty = 2;
+                    this.isInCommune = false;
                 },
 
                 prevStep(step) {
@@ -474,6 +530,8 @@
                             const data = await response.json();
                             const success = data.success;
                             this.currentStep = 5;
+
+                            this.resetForm();
 
                         } else {
                             // Swal.fire({
