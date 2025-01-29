@@ -14,15 +14,14 @@ class TExtrait extends Model
         'n_registre',
         'document',
         'qtecmde',
-        'user_id',
-        'modelivraison_id',
+        'telephone',
+        'libellemodelivraison',
         'commune_id',
-        'ttypeprestation_id',
+        'montantservice',
         'codecommande',
         'montanttva',
         'montanttc',
-        'nom_complet',
-        'prixservice_id',
+        'fullname',
         'prixservice',
         'datelivreprevu',
         'adresse',
@@ -47,18 +46,15 @@ class TExtrait extends Model
      */
     public static  function generateExtraitCode()
     {
-
         $prefix = 'EX';
         $year = Carbon::now()->format('y');
         $lastCode = self::where('codecommande', 'like', "EX$year-%")
-                         ->orderBy('codecommande', 'desc')
-                         ->first();
-        if ($lastCode)
-        {
+            ->orderBy('codecommande', 'desc')
+            ->first();
+        if ($lastCode) {
             $lastNumber = intval(substr($lastCode->codecommande, 5));
             $newNumber = $lastNumber + 1;
-        } else
-        {
+        } else {
             $newNumber = 1;
         }
         $newNumberFormatted = str_pad($newNumber, 5, '0', STR_PAD_LEFT);

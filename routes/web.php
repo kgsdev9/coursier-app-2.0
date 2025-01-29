@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CandidatureController;
+use App\Http\Controllers\Document\DocumentController;
 use App\Http\Controllers\Render\RenderInvoicePdfController;
 use App\Http\Controllers\Render\RenderInvoiceExcellController;
 use App\Livewire\CommandeEXtrait;
@@ -34,8 +35,10 @@ Route::get('/export/versement/all', [RenderInvoicePdfController::class, 'printVe
 
 // Route::get('/liste/cmde/extrait', CommandeEXtrait::class)->name('cmde.extrait')->middleware('restrict.access')->middleware('auth');
 
-Route::get('/confirmated-commande',ConfirmadCommande::class)->name('commande.confirmated');
-Route::get('/liste-users',UserComponent::class)->name('users');
+Route::get('/confirmated-commande', ConfirmadCommande::class)->name('commande.confirmated');
+Route::get('/liste-users', UserComponent::class)->name('users');
 
 
 Route::get('/liste/cmde/extrait', CommandeEXtrait::class)->name('cmde.extrait')->middleware('restrict.access')->middleware('auth');
+
+Route::resource('document', DocumentController::class);
