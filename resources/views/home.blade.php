@@ -513,6 +513,7 @@
                     formData.append('promoCode', this.promoCode);
                     formData.append('deliveryPlace', this.deliveryPlace);
                     formData.append('isInCommune', this.isInCommune);
+                    formData.append('image', this.image);
                     formData.append('totalAmount', this.calculateTotal());
 
 

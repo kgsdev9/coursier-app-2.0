@@ -15,6 +15,14 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
 
+
+        $image = "";
+
+        if ($request->hasFile('image')) {
+            $image = md5($request->image->getClientOriginalName() . microtime()) . '.' . $request->image->extension();
+            $request->image->storeAs('extraits', $image);
+        }
+
         $codeextrait  = TExtrait::generateExtraitCode();
         // Enregistrement sans validation
         TExtrait::create([
@@ -22,7 +30,7 @@ class DocumentController extends Controller
             'fullname' => $request->fullname,
             'telephone' => $request->phone,
             'libellemodelivraison' => 'A Domicile',
-            'document' => $request->document ?? 'rien',
+            'document' => $image,
             'qtecmde' => $request->documentQty,
             'commune_id' => $request->commune ?? 1,
             'codecommande' => $codeextrait,
@@ -34,15 +42,14 @@ class DocumentController extends Controller
             'montanttc' => $request->totalAmount,
         ]);
 
-
-        Mail::to('kgsdev8@gmail.com')->send(new NewCommandeNotification([
-            'n_registre' => $request->n_registre,
-            'nom_complet' => $request->fullname,
-            'adresse' => $request->deliveryPlace,
-            'quantite' => $request->documentQty,
-            'montanttc' => $request->totalAmount,
-        ]));
-
+        Mail::to(['kgsdev8@gmail.com', 'kouassiach79@gmail.com'])
+            ->send(new NewCommandeNotification([
+                'n_registre' => $request->n_registre,
+                'nom_complet' => $request->fullname,
+                'adresse' => $request->deliveryPlace,
+                'quantite' => $request->documentQty,
+                'montanttc' => $request->totalAmount,
+            ]));
 
         return response()->json([
             'message' => 'Enregistrement effectué avec succès',
