@@ -9,7 +9,7 @@
                     <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
                         style="flex: 1 1 100%; max-width: 100%;">
                         <div class="p-3">
-                            <img src="{{asset('assets/img/avatars/1.png')}}" alt="mentor 1"
+                            <img src="{{ asset('assets/img/avatars/1.png') }}" alt="mentor 1"
                                 class="avatar avatar-xl rounded-circle">
                             <div class="mt-3">
                                 <h3 class="mb-0 h4">Vay Kouadio</h3>
@@ -23,7 +23,7 @@
                     <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
                         style="flex: 1 1 100%; max-width: 100%;">
                         <div class="p-3">
-                            <img src="{{asset('assets/img/avatars/2.png')}}" alt="mentor 2"
+                            <img src="{{ asset('assets/img/avatars/2.png') }}" alt="mentor 2"
                                 class="avatar avatar-xl rounded-circle">
                             <div class="mt-3">
                                 <h3 class="mb-0 h4">Aminata Diabaté</h3>
@@ -42,7 +42,7 @@
                     <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
                         style="flex: 1 1 100%; max-width: 100%;">
                         <div class="p-3">
-                            <img src="{{asset('assets/img/avatars/3.png')}}" alt="mentor 3"
+                            <img src="{{ asset('assets/img/avatars/3.png') }}" alt="mentor 3"
                                 class="avatar avatar-xl rounded-circle">
                             <div class="mt-3">
                                 <h3 class="mb-0 h4">Issouf Koné</h3>
@@ -52,11 +52,14 @@
                         </div>
                     </div>
 
+
+
+
                     <!-- Témoignage 4 -->
                     <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
                         style="flex: 1 1 100%; max-width: 100%;">
                         <div class="p-3">
-                            <img src="{{asset('assets/img/avatars/4.png')}}" alt="mentor 4"
+                            <img src="{{ asset('assets/img/avatars/4.png') }}" alt="mentor 4"
                                 class="avatar avatar-xl rounded-circle">
                             <div class="mt-3">
                                 <h3 class="mb-0 h4">Fanta Traoré</h3>
@@ -75,7 +78,7 @@
                     <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
                         style="flex: 1 1 100%; max-width: 100%;">
                         <div class="p-3">
-                            <img src="{{asset('assets/img/avatars/5.png')}}" alt="mentor 5"
+                            <img src="{{ asset('assets/img/avatars/5.png') }}" alt="mentor 5"
                                 class="avatar avatar-xl rounded-circle">
                             <div class="mt-3">
                                 <h3 class="mb-0 h4">Saliou Keita</h3>
@@ -89,7 +92,7 @@
                     <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
                         style="flex: 1 1 100%; max-width: 100%;">
                         <div class="p-3">
-                            <img src="{{asset('assets/img/avatars/6.png')}}" alt="mentor 6"
+                            <img src="{{ asset('assets/img/avatars/6.png') }}" alt="mentor 6"
                                 class="avatar avatar-xl rounded-circle">
                             <div class="mt-3">
                                 <h3 class="mb-0 h4">Fatim Cissé</h3>
@@ -102,6 +105,78 @@
             </div>
 
             <!-- Ajoutez d'autres groupes de témoignages si nécessaire -->
+
+            <div class="carousel-item">
+                <div class="d-flex flex-column flex-sm-row justify-content-between">
+                    <!-- Témoignage 5 -->
+                    <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
+                        style="flex: 1 1 100%; max-width: 100%;">
+                        <div class="p-3">
+                            <img src="{{ asset('assets/img/avatars/1.png') }}" alt="mentor 1"
+                                class="avatar avatar-xl rounded-circle">
+                            <div class="mt-3">
+                                <h3 class="mb-0 h4">Aïcha Diaby</h3>
+                                <span class="text-gray-800">Vraiment, je ne m'attendais pas à un service aussi rapide et
+                                    efficace. Je recommande vivement !</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Témoignage 6 -->
+                    <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
+                        style="flex: 1 1 100%; max-width: 100%;">
+                        <div class="p-3">
+                            <img src="{{ asset('assets/img/avatars/2.png') }}" alt="mentor 2"
+                                class="avatar avatar-xl rounded-circle">
+                            <div class="mt-3">
+                                <h3 class="mb-0 h4">Koffi Kouadio</h3>
+                                <span class="text-gray-800">Service impeccable, livraison sans faute. Je suis vraiment
+                                    satisfait, merci à toute l’équipe !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="carousel-item">
+                <div class="d-flex flex-column flex-sm-row justify-content-between">
+                    <!-- Témoignage 5 -->
+                    <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
+                        style="flex: 1 1 100%; max-width: 100%;">
+                        <div class="p-3">
+                            <img src="{{ asset('assets/img/avatars/3.png') }}" alt="mentor 3"
+                                class="avatar avatar-xl rounded-circle">
+                            <div class="mt-3">
+                                <h3 class="mb-0 h4">Sophie Yao</h3>
+                                <span class="text-gray-800">Une équipe professionnelle, rapide et sérieuse. C’est le
+                                    meilleur service de livraison de documents que j’ai testé.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Témoignage 6 -->
+                    <div class="card shadow-sm text-center rounded-4 border mb-3 mb-sm-0 mx-2"
+                        style="flex: 1 1 100%; max-width: 100%;">
+                        <div class="p-3">
+                            <img src="{{ asset('assets/img/avatars/4.png') }}" alt="mentor 4"
+                                class="avatar avatar-xl rounded-circle">
+                            <div class="mt-3">
+                                <h3 class="mb-0 h4">Moussa Bakayoko</h3>
+                                <span class="text-gray-800">Je suis épaté par la rapidité et la qualité de la
+                                    livraison. Franchement, c’est top !</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
         </div>
 
         <!-- Contrôles du carrousel -->
