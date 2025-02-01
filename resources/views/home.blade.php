@@ -146,15 +146,32 @@
                                         <label for="n_registre">N° Registre</label>
                                     </div>
 
-                                    <!-- Commune -->
-                                    <div class="form-floating mb-3">
-                                        <select id="commune" class="form-select" x-model="commune">
+
+                                    <div class="mb-3">
+
+                                        <select id="classe_id" x-model="selectCommune" class="form-select" required
+                                            @change="showSelectedCommune()">
                                             <option value="" disabled selected>Choisissez une commune</option>
-                                            <template x-for="commune in communes" :key="commune.id">
-                                                <option :value="commune.id" x-text="commune.libellecommune"></option>
-                                            </template>
+                                            @foreach ($communes as $communeOption)
+                                                <option value="{{ $communeOption->id }}">
+                                                    {{ $communeOption->libellecommune }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
+
+                                    <!-- Commune -->
+                                    {{-- <div class="mb-3">
+                                        <select id="selectCommune" class="form-select w-100"
+                                            @change="showSelectedCommune()">
+                                            <option value="" disabled selected>Choisissez une commune</option>
+                                            <template x-for="communeOption in communes" :key="communeOption.id">
+                                                <option :value="communeOption.id" x-text="communeOption.libellecommune">
+                                                </option>
+                                            </template>
+                                        </select>
+                                    </div> --}}
+
 
                                     <!-- Lieu de livraison -->
                                     <div class="form-floating mb-3">
@@ -240,9 +257,7 @@
                                     <p><strong>Type de document :</strong> <span
                                             x-text="selectedDocument ? selectedDocument.name : ''"></span></p>
                                     <p><strong>Nom complet :</strong> <span x-text="fullname"></span></p>
-                                    <p><strong>Commune :</strong> <span x-text="commune"></span></p>
-                                    <p><strong>Lieu de livraison :</strong> <span x-text="deliveryPlace"></span></p>
-
+                                    <p><strong>Commune :</strong> <span x-text="selectedCommune.libellecommune"></span></p>
                                     <!-- Quantité de documents -->
                                     <div class="form-floating mb-3">
                                         <label for="documentQty"></label>
@@ -357,15 +372,12 @@
 
 
 
-
-
-
                         </div>
                     </div>
                     @include('avis')
                     <div class="d-flex justify-content-center align-items-center" style="height:30vh;">
                         <div class="text-center">
-                            <div class="mt-2">
+                            <div>
                                 <h4><strong>Khms Group</strong> est une SARL au capital de <strong>1 million de francs
                                         CFA</strong>.</h4>
                             </div>
@@ -376,7 +388,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-center mt-10">Produit développé et maintenu par KGS Informatique.</div>
+                    <div class="text-center">Produit développé et maintenu par KGS Informatique.</div>
                 </div>
             </div>
 
@@ -387,6 +399,7 @@
         function formSteps() {
             return {
                 currentStep: 1,
+                selectCommune: '',
                 isLoading: false,
                 phone: '',
                 phoneError: false,
@@ -412,16 +425,15 @@
                 servicePrice: 2000, // Prix du service
                 deliveryPrice: 1500, // Prix de la livraison de base
                 deliveryDiscount: 1000, // Réduction sur la livraison si l'utilisateur est dans la commune
-
-                // Case à cocher pour savoir si l'utilisateur est dans la commune
                 isInCommune: false, // Déterminer si l'utilisateur est dans la commune
-
+                selectedCommune: null,
                 nextStep(step) {
                     if (step === 1 && !this.phoneError) {
                         this.currentStep = 2;
                     } else if (step === 2 && this.selectedDocument) {
                         this.currentStep = 3;
                     } else if (step === 3) {
+                        this.selectCommune = this.selectedCommune.id;
                         this.currentStep = 4;
                     }
                 },
@@ -430,6 +442,11 @@
                     this.resetForm();
                     this.currentStep = 1;
                 },
+
+                showSelectedCommune() {
+                    this.selectedCommune = this.communes.find(commune => commune.id == this.selectCommune);
+                },
+
                 resetForm() {
                     this.phone = "";
                     this.fullname = "";
@@ -437,6 +454,7 @@
                     this.deliveryPlace = "";
                     this.deliveryPlace = "";
                     this.selectedDocument = null;
+                    this.selectCommune = null;
                     this.image = null;
                     this.documentQty = 2;
                     this.isInCommune = false;
@@ -444,40 +462,19 @@
 
                 prevStep(step) {
                     this.currentStep = step;
-                },
+                    if (this.currentStep == 3) {
+                        this.selectCommune = this.selectedCommune.id;
 
-                updatePhone() {
-                    // Si le numéro ne commence pas déjà par +225, on l'ajoute
-                    if (!this.phone.startsWith("+225")) {
-                        this.phone = "+225" + this.phone.trim();
                     }
-                },
 
-                // Validation du numéro de téléphone
-                validatePhone() {
-                    // Vérifier que le numéro commence bien par +225 et a 12 caractères
-                    const phoneRegex = /^\+225[0-9]{10}$/;
-                    this.phoneError = !phoneRegex.test(this
-                        .phone); // Si le numéro ne correspond pas au format, afficher l'erreur
                 },
-
                 selectDocument(doc) {
                     this.selectedDocument = doc;
                 },
 
-                save() {
-                    // Logique pour soumettre les informations
-                    this.isLoading = true;
-                    setTimeout(() => {
-                        this.isLoading = false;
-                        alert('Commande confirmée !');
-                        this.currentStep = 1; // Réinitialiser l'étape après confirmation
-                    }, 2000);
-                },
-
-
                 get isFormValid() {
-                    return this.phone && this.selectedDocument && this.fullname && this.commune && this.deliveryPlace &&
+                    return this.phone && this.selectedDocument && this.fullname && this.selectCommune && this
+                        .deliveryPlace &&
                         this.image && !this.imageError;
                 },
 
@@ -501,7 +498,7 @@
                     const formData = new FormData();
                     formData.append('phone', this.phone);
                     formData.append('fullname', this.fullname);
-                    formData.append('commune', this.commune);
+                    formData.append('commune', this.selectCommune);
                     formData.append('n_registre', this.n_registre);
                     formData.append('deliveryprice', this.deliveryPrice);
                     formData.append('serviceprice', this.servicePrice);
@@ -512,7 +509,6 @@
                     formData.append('isInCommune', this.isInCommune);
                     formData.append('image', this.image);
                     formData.append('totalAmount', this.calculateTotal());
-
 
                     try {
                         const response = await fetch('{{ route('document.store') }}', {
@@ -528,29 +524,16 @@
                             const data = await response.json();
                             const success = data.success;
                             this.currentStep = 5;
-
                             this.resetForm();
-
                         } else {
-                            // Swal.fire({
-                            //     icon: 'error',
-                            //     title: 'Erreur lors de l\'enregistrement.',
-                            //     showConfirmButton: true
-                            // });
+
                         }
                     } catch (error) {
                         console.error('Erreur réseau :', error);
-                        // Swal.fire({
-                        //     icon: 'error',
-                        //     title: 'Une erreur est survenue.',
-                        //     showConfirmButton: true
-                        // });
                     } finally {
                         this.isLoading = false;
                     }
                 },
-
-
                 // Méthode pour appliquer le code promo
                 applyPromoCode() {
                     const validPromoCodes = ['PROMO10', 'DISCOUNT20']; // Exemple de codes promo valides

@@ -42,14 +42,14 @@ class DocumentController extends Controller
             'montanttc' => $request->totalAmount,
         ]);
 
-        Mail::to(['kgsdev8@gmail.com', 'kouassiach79@gmail.com'])
-            ->send(new NewCommandeNotification([
-                'n_registre' => $request->n_registre,
-                'nom_complet' => $request->fullname,
-                'adresse' => $request->deliveryPlace,
-                'quantite' => $request->documentQty,
-                'montanttc' => $request->totalAmount,
-            ]));
+        // Mail::to(['kgsdev8@gmail.com', 'kouassiach79@gmail.com'])
+        //     ->send(new NewCommandeNotification([
+        //         'n_registre' => $request->n_registre,
+        //         'nom_complet' => $request->fullname,
+        //         'adresse' => $request->deliveryPlace,
+        //         'quantite' => $request->documentQty,
+        //         'montanttc' => $request->totalAmount,
+        //     ]));
 
         return response()->json([
             'message' => 'Enregistrement effectué avec succès',
